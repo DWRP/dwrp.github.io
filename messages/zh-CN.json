@@ -1,0 +1,269 @@
+{
+    "Index": {
+        "nav": {
+            "about": "关于",
+            "experience": "经验",
+            "skills": "技能",
+            "education": "教育",
+            "projects": "项目",
+            "contact": "联系",
+            "locales": {
+                "en": "英语",
+                "pt-BR": "葡萄牙语",
+                "es": "西班牙语",
+                "zh-CN": "中文"
+            }
+        },
+        "hero": {
+            "greeting": "你好，我是",
+            "name": "Douglas Pardim",
+            "title": "高级全栈开发工程师",
+            "subtitle": "专注于 React、React Native 和 Node.js",
+            "description": "将创意转化为可扩展的高性能 Web 和移动应用程序",
+            "cta": {
+                "projects": "查看项目",
+                "contact": "联系我",
+                "cv": "下载简历"
+            },
+            "stats": {
+                "experience": "5+ 年",
+                "experienceLabel": "经验",
+                "projects": "50+ 项目",
+                "projectsLabel": "已交付",
+                "companies": "10+ 公司",
+                "companiesLabel": "服务过"
+            }
+        },
+        "about": {
+            "title": "关于我",
+            "subtitle": "热衷于创新解决方案的技术爱好者",
+            "intro": "毕业于 IFES 信息技术专业，正在 Estácio 攻读计算机科学学位，拥有扎实的全栈开发经验。",
+            "content1": "我是 Douglas Pardim，一名拥有全栈开发经验的技术爱好者。我寻求挑战，探索新技术并提升技能。",
+            "content2": "我使用 React 和 React Native 工作，运用 Redux、ContextAPI、Styled Components、设计系统组件、Next.js 以及 API 集成（GraphQL/REST）。",
+            "content3": "在后端方面，我拥有 Node.js、NestJS 和 Express.js 的经验，以及 SQL 数据库（MySQL、PostgreSQL、SQL Server）和 NoSQL（MongoDB）。我实践敏捷开发、单元测试以及使用 Git 进行版本控制。",
+            "highlights": {
+                "title": "核心能力",
+                "item1": "Next.js、React.js 和 React Native",
+                "item2": "Node.js、NestJS 和 Express.js",
+                "item3": "敏捷开发（Scrum/Kanban）",
+                "item4": "SQL 和 NoSQL 数据库"
+            }
+        },
+        "experience": {
+            "title": "专业经验",
+            "subtitle": "我的软件开发之旅",
+            "jobs": {
+                "job1": {
+                    "company": "Globalsys",
+                    "position": "全栈开发工程师",
+                    "period": "2021年11月 - 至今",
+                    "location": "巴西圣埃斯皮里图州",
+                    "description": "使用 React Native 进行应用程序开发和 React 代码维护",
+                    "achievements": [
+                        "在 Web 和移动团队中担任技术领导",
+                        "确保提供稳健和高质量的解决方案",
+                        "React Native 应用程序开发",
+                        "React 代码维护和优化"
+                    ]
+                },
+                "job2": {
+                    "company": "Mil Sênior Lab",
+                    "position": "开发工程师",
+                    "period": "2021年1月 - 2023年5月",
+                    "location": "巴西",
+                    "description": "使用 Node.js、React 和 React Native 进行开发",
+                    "achievements": [
+                        "优先考虑截止日期和质量",
+                        "维护干净且可扩展的代码",
+                        "团队之间有效协作",
+                        "使用 Node.js 和 React 进行全栈开发"
+                    ]
+                },
+                "job3": {
+                    "company": "EDP Brasil",
+                    "position": "实习生",
+                    "period": "2019年4月 - 2021年1月",
+                    "location": "巴西维多利亚/ES",
+                    "description": "处理内部需求和系统自动化",
+                    "achievements": [
+                        "系统自动化和 VBA 到 Python 的迁移",
+                        "与 SAP 的系统集成",
+                        "使用 Node.js 进行系统开发",
+                        "处理公司内部需求"
+                    ]
+                }
+            },
+            "viewMore": "查看更多",
+            "viewLess": "收起"
+        },
+        "skills": {
+            "title": "技能和技术",
+            "subtitle": "我掌握的用于创建出色解决方案的工具",
+            "frontend": {
+                "title": "前端",
+                "description": "现代化响应式界面"
+            },
+            "backend": {
+                "title": "后端",
+                "description": "稳健且可扩展的 API"
+            },
+            "mobile": {
+                "title": "移动端",
+                "description": "原生和混合应用"
+            },
+            "devops": {
+                "title": "DevOps 和云",
+                "description": "部署和基础设施"
+            },
+            "tools": {
+                "title": "工具和其他",
+                "description": "生产力和协作"
+            }
+        },
+        "education": {
+            "title": "教育和认证",
+            "subtitle": "持续学习至关重要",
+            "degree": {
+                "title": "计算机科学",
+                "institution": "Estácio",
+                "period": "2020 - 2025",
+                "description": "软件开发、算法和系统工程方面的培训"
+            },
+            "certifications": {
+                "title": "认证",
+                "cert1": {
+                    "name": "云计算",
+                    "issuer": "AWS Discovery Day",
+                    "year": "2023"
+                },
+                "cert2": {
+                    "name": "Node.js 证书",
+                    "issuer": "OpenJS Foundation",
+                    "year": "2022"
+                },
+                "cert3": {
+                    "name": "使用 JavaScript 的 Web 性能",
+                    "issuer": "Alura",
+                    "year": "2022"
+                },
+                "cert4": {
+                    "name": "全球开发加速 #2",
+                    "issuer": "Avanade",
+                    "year": "2021"
+                },
+                "cert5": {
+                    "name": ".NET 应用程序开发",
+                    "issuer": "Microsoft",
+                    "year": "2021"
+                }
+            }
+        },
+        "projects": {
+            "title": "精选项目",
+            "subtitle": "一些我引以为豪的作品",
+            "filter": {
+                "all": "全部",
+                "web": "Web",
+                "mobile": "移动",
+                "opensource": "开源"
+            },
+            "projects-infos": {
+                "app-ideas": {
+                    "name": "APP IDEAS",
+                    "type": "开源",
+                    "desc": "供开发人员练习技能的应用创意集合。各种开发概念和模式的实现。",
+                    "link": "https://dwrp.github.io/app-ideas/",
+                    "tags": ["React", "JavaScript", "学习"]
+                },
+                "ominix": {
+                    "name": "OMINIX",
+                    "type": "开源",
+                    "desc": "基于 Express.js 构建的轻量级后端框架。用于简化使用 Node.js 创建 RESTful API 的 NPM 包。",
+                    "link": "https://www.npmjs.com/package/ominix",
+                    "tags": ["Node.js", "Express", "NPM"]
+                },
+                "ecommerce": {
+                    "name": "电商平台",
+                    "type": "Web",
+                    "desc": "具有购物车、支付和管理面板的完整电商平台。使用 Next.js 和 Node.js 构建。",
+                    "tags": ["Next.js", "Node.js", "PostgreSQL"]
+                },
+                "taskmanager": {
+                    "name": "Task Manager Pro",
+                    "type": "Web",
+                    "desc": "具有团队协作功能的实时任务管理应用程序。实现 WebSocket 进行实时更新。",
+                    "tags": ["React", "Socket.io", "MongoDB"]
+                },
+                "deliveryapp": {
+                    "name": "配送应用",
+                    "type": "移动",
+                    "desc": "具有实时跟踪、地图集成和支付系统的配送应用程序。",
+                    "tags": ["React Native", "Firebase", "Maps API"]
+                }
+            },
+            "cta": "查看项目",
+            "github": "在 GitHub 上查看"
+        },
+        "contact": {
+            "title": "让我们一起合作？",
+            "subtitle": "我总是乐于接受新的挑战和机会",
+            "description": "如果您正在寻找一位热衷于创新解决方案的全栈开发工程师，我已准备好协作并为您的项目成功做出贡献。让我们一起创造令人惊叹的东西！",
+            "info": "在哪里找到我",
+            "location": "📍 巴西塞拉/ES",
+            "phone": "📱 +55 (27) 99695-0412",
+            "cta": {
+                "email": "发送邮件",
+                "linkedin": "LinkedIn",
+                "github": "GitHub",
+                "cv": "下载简历"
+            }
+        },
+        "footer": {
+            "rights": "© 2025 Douglas Pardim。保留所有权利。",
+            "built": "使用以下技术构建",
+            "and": "和",
+            "madeWith": "Next.js、React 和 Tailwind CSS"
+        },
+        "switchToLightMode": "浅色模式",
+        "switchToDarkMode": "深色模式",
+        "seo": {
+            "title": "Douglas Pardim - 高级全栈开发工程师",
+            "titleTemplate": "%s | Douglas Pardim",
+            "description": "专注于 React、React Native 和 Node.js 的高级全栈开发工程师。拥有超过 5 年构建可扩展高性能 Web 和移动应用程序的经验。",
+            "author": "Douglas Pardim",
+            "siteName": "Douglas Pardim - 全栈开发工程师",
+            "keywords": [
+                "Douglas Pardim",
+                "全栈开发工程师",
+                "React 开发工程师",
+                "Node.js 开发工程师",
+                "React Native 开发工程师",
+                "JavaScript 专家",
+                "TypeScript 开发工程师",
+                "Web 开发",
+                "移动开发",
+                "Next.js",
+                "NestJS",
+                "前端开发",
+                "后端开发",
+                "巴西全栈开发工程师",
+                "塞拉 ES 开发工程师"
+            ],
+            "openGraph": {
+                "title": "Douglas Pardim - 高级全栈开发工程师",
+                "description": "精通 React、Node.js 和 React Native 的全栈开发工程师。使用 Tailwind CSS 和 TypeScript 创建直观的界面。擅长使用 Next.js 和 NestJS 构建可扩展的应用程序。",
+                "type": "website",
+                "locale": "zh_CN",
+                "siteName": "Douglas Pardim 作品集"
+            },
+            "twitter": {
+                "card": "summary_large_image",
+                "title": "Douglas Pardim - 高级全栈开发工程师",
+                "description": "专注于 React、React Native 和 Node.js 的高级全栈开发工程师。构建高性能的 Web 和移动应用程序。",
+                "creator": "@douglaspardim",
+                "site": "@douglaspardim"
+            }
+        }
+    }
+}
+

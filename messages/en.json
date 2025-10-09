@@ -223,6 +223,44 @@
             "madeWith": "Next.js, React & Tailwind CSS"
         },
         "switchToLightMode": "Light Mode",
-        "switchToDarkMode": "Dark Mode"
+        "switchToDarkMode": "Dark Mode",
+        "seo": {
+            "title": "Douglas Pardim - Senior Fullstack Developer",
+            "titleTemplate": "%s | Douglas Pardim",
+            "description": "Senior Fullstack Developer specialized in React, React Native, and Node.js. Over 5 years of experience building scalable and high-performance web and mobile applications.",
+            "author": "Douglas Pardim",
+            "siteName": "Douglas Pardim - Fullstack Developer",
+            "keywords": [
+                "Douglas Pardim",
+                "Fullstack Developer",
+                "React Developer",
+                "Node.js Developer",
+                "React Native Developer",
+                "JavaScript Expert",
+                "TypeScript Developer",
+                "Web Development",
+                "Mobile Development",
+                "Next.js",
+                "NestJS",
+                "Frontend Development",
+                "Backend Development",
+                "Full Stack Developer Brazil",
+                "Serra ES Developer"
+            ],
+            "openGraph": {
+                "title": "Douglas Pardim - Senior Fullstack Developer",
+                "description": "Full-stack developer proficient in React, Node.js, and React Native. I create intuitive interfaces using Tailwind CSS and TypeScript. Expert in Next.js and NestJS for scalable applications.",
+                "type": "website",
+                "locale": "en_US",
+                "siteName": "Douglas Pardim Portfolio"
+            },
+            "twitter": {
+                "card": "summary_large_image",
+                "title": "Douglas Pardim - Senior Fullstack Developer",
+                "description": "Senior Fullstack Developer specialized in React, React Native, and Node.js. Building high-performance web and mobile applications.",
+                "creator": "@douglaspardim",
+                "site": "@douglaspardim"
+            }
+        }
     }
 }

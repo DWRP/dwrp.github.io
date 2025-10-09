@@ -223,6 +223,44 @@
             "madeWith": "Next.js, React & Tailwind CSS"
         },
         "switchToLightMode": "Modo Claro",
-        "switchToDarkMode": "Modo Escuro"
+        "switchToDarkMode": "Modo Escuro",
+        "seo": {
+            "title": "Douglas Pardim - Desenvolvedor Fullstack Sênior",
+            "titleTemplate": "%s | Douglas Pardim",
+            "description": "Desenvolvedor Fullstack especializado em React, React Native e Node.js. Mais de 5 anos de experiência criando aplicações web e mobile escaláveis e de alto desempenho.",
+            "author": "Douglas Pardim",
+            "siteName": "Douglas Pardim - Desenvolvedor Fullstack",
+            "keywords": [
+                "Douglas Pardim",
+                "Desenvolvedor Fullstack",
+                "Desenvolvedor React",
+                "Desenvolvedor Node.js",
+                "Desenvolvedor React Native",
+                "JavaScript Expert",
+                "TypeScript Developer",
+                "Desenvolvedor Web",
+                "Desenvolvedor Mobile",
+                "Next.js",
+                "NestJS",
+                "Desenvolvimento Frontend",
+                "Desenvolvimento Backend",
+                "Full Stack Developer Brasil",
+                "Serra ES Desenvolvedor"
+            ],
+            "openGraph": {
+                "title": "Douglas Pardim - Desenvolvedor Fullstack Sênior",
+                "description": "Desenvolvedor Fullstack proficiente em React, Node.js e React Native. Crio interfaces intuitivas usando Tailwind CSS e TypeScript. Especialista em Next.js e NestJS para aplicações escaláveis.",
+                "type": "website",
+                "locale": "pt_BR",
+                "siteName": "Douglas Pardim Portfolio"
+            },
+            "twitter": {
+                "card": "summary_large_image",
+                "title": "Douglas Pardim - Desenvolvedor Fullstack Sênior",
+                "description": "Desenvolvedor Fullstack especializado em React, React Native e Node.js. Criando aplicações web e mobile de alto desempenho.",
+                "creator": "@douglaspardim",
+                "site": "@douglaspardim"
+            }
+        }
     }
 }

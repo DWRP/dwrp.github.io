@@ -1,34 +1,12 @@
 import "../styles/globals.css";
-import { Metadata } from "next";
+import { generateSeoMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Douglas Pardim",
-  description:
-    "Bringing frontend and backend together to create fluid and scalable web applications!",
-  metadataBase: new URL("https://dwrp.github.io/"),
-  keywords: [
-    "Douglas Pardim",
-    "Douglas Pardim Fullstack",
-    "Douglas Pardim Developer",
-    "Douglas Pardim Fulstack Developer",
-    "Fullstack Developer",
-    "React Developer",
-    "Node.js Developer",
-    "React Native Developer",
-    "JavaScript Expert",
-    "Web Development",
-    "Mobile Development",
-    "UI/UX Development",
-    "E-commerce Development",
-    "React Developer (5+ years)",
-    "Node.js Developer (5+ years)",
-  ],
-  openGraph: {
-    description:
-      "Full-stack developer proficient in React, Node.js, and React Native. I create intuitive interfaces using Tailwind CSS and TypeScript. Expert in Next.js and Nest.js for scalable applications.",
-    images: ["https://dwrp.github.io/cover", "https://dwrp.github.io/cover2"],
-  },
-};
+export async function generateMetadata() {
+  // Default to English, but can be made dynamic based on user preference
+  // For now, we'll use English as default since the locale detection
+  // happens client-side in the page-content.tsx
+  return await generateSeoMetadata("en");
+}
 
 export default async function RootLayout({
   children,
@@ -37,6 +15,12 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="canonical" href="https://dwrp.github.io/" />
+        <meta name="theme-color" content="#8b5cf6" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body>{children}</body>
     </html>
   );

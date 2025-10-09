@@ -1,0 +1,269 @@
+{
+    "Index": {
+        "nav": {
+            "about": "Sobre Mí",
+            "experience": "Experiencia",
+            "skills": "Habilidades",
+            "education": "Educación",
+            "projects": "Proyectos",
+            "contact": "Contacto",
+            "locales": {
+                "en": "Inglés",
+                "pt-BR": "Portugués",
+                "es": "Español",
+                "zh-CN": "Chino"
+            }
+        },
+        "hero": {
+            "greeting": "Hola, soy",
+            "name": "Douglas Pardim",
+            "title": "Desarrollador Fullstack Sénior",
+            "subtitle": "Especializado en React, React Native y Node.js",
+            "description": "Transformando ideas en aplicaciones web y móviles escalables y de alto rendimiento",
+            "cta": {
+                "projects": "Ver Proyectos",
+                "contact": "Hablemos",
+                "cv": "Descargar CV"
+            },
+            "stats": {
+                "experience": "5+ Años",
+                "experienceLabel": "Experiencia",
+                "projects": "50+ Proyectos",
+                "projectsLabel": "Entregados",
+                "companies": "10+ Empresas",
+                "companiesLabel": "Atendidas"
+            }
+        },
+        "about": {
+            "title": "Sobre Mí",
+            "subtitle": "Entusiasta de la tecnología con pasión por soluciones innovadoras",
+            "intro": "Graduado en Informática por IFES y estudiante de Ciencias de la Computación en Estácio, con sólida experiencia en desarrollo Fullstack.",
+            "content1": "Soy Douglas Pardim, entusiasta de la tecnología con experiencia en desarrollo Fullstack. Busco desafíos para explorar nuevas tecnologías y mejorar habilidades.",
+            "content2": "Trabajo con React y React Native utilizando Redux, ContextAPI, Styled Components, Design System Components, Next.js e integración de APIs (GraphQL/REST).",
+            "content3": "En backend, tengo experiencia con Node.js, NestJS y Express.js, además de bases de datos SQL (MySQL, PostgreSQL, SQL Server) y NoSQL (MongoDB). Practico desarrollo ágil, pruebas unitarias y control de versiones con Git.",
+            "highlights": {
+                "title": "Competencias Principales",
+                "item1": "Next.js, React.js y React Native",
+                "item2": "Node.js, NestJS y Express.js",
+                "item3": "Desarrollo ágil (Scrum/Kanban)",
+                "item4": "Bases de datos SQL y NoSQL"
+            }
+        },
+        "experience": {
+            "title": "Experiencia Profesional",
+            "subtitle": "Mi trayectoria en el desarrollo de software",
+            "jobs": {
+                "job1": {
+                    "company": "Globalsys",
+                    "position": "Desarrollador Fullstack",
+                    "period": "nov/2021 - presente",
+                    "location": "Espírito Santo, Brasil",
+                    "description": "Actuación en el desarrollo de aplicaciones con React Native y mantenimiento de códigos React",
+                    "achievements": [
+                        "Liderazgo técnico en equipos web y móvil",
+                        "Garantía de soluciones robustas y de alta calidad",
+                        "Desarrollo de aplicaciones React Native",
+                        "Mantenimiento y optimización de códigos React"
+                    ]
+                },
+                "job2": {
+                    "company": "Mil Sênior Lab",
+                    "position": "Desarrollador",
+                    "period": "ene/2021 - may/2023",
+                    "location": "Brasil",
+                    "description": "Desarrollo con Node.js, React y React Native",
+                    "achievements": [
+                        "Priorización de plazos y calidad",
+                        "Mantenimiento de código limpio y escalable",
+                        "Colaboración efectiva entre equipos",
+                        "Desarrollo fullstack con Node.js y React"
+                    ]
+                },
+                "job3": {
+                    "company": "EDP Brasil",
+                    "position": "Becario",
+                    "period": "abr/2019 - ene/2021",
+                    "location": "Vitória/ES, Brasil",
+                    "description": "Atención de demandas internas y automatización de sistemas",
+                    "achievements": [
+                        "Automatización de sistemas y migración de VBA a Python",
+                        "Integración de sistemas con SAP",
+                        "Desarrollo de sistemas con Node.js",
+                        "Atención de demandas internas de la empresa"
+                    ]
+                }
+            },
+            "viewMore": "Ver más",
+            "viewLess": "Ver menos"
+        },
+        "skills": {
+            "title": "Habilidades y Tecnologías",
+            "subtitle": "Herramientas que domino para crear soluciones increíbles",
+            "frontend": {
+                "title": "Frontend",
+                "description": "Interfaces modernas y responsivas"
+            },
+            "backend": {
+                "title": "Backend",
+                "description": "APIs robustas y escalables"
+            },
+            "mobile": {
+                "title": "Móvil",
+                "description": "Apps nativas e híbridas"
+            },
+            "devops": {
+                "title": "DevOps y Cloud",
+                "description": "Deploy e infraestructura"
+            },
+            "tools": {
+                "title": "Herramientas y Otros",
+                "description": "Productividad y colaboración"
+            }
+        },
+        "education": {
+            "title": "Educación y Certificaciones",
+            "subtitle": "El aprendizaje continuo es fundamental",
+            "degree": {
+                "title": "Ciencias de la Computación",
+                "institution": "Estácio",
+                "period": "2020 - 2025",
+                "description": "Formación en desarrollo de software, algoritmos e ingeniería de sistemas"
+            },
+            "certifications": {
+                "title": "Certificaciones",
+                "cert1": {
+                    "name": "Computación en la Nube",
+                    "issuer": "AWS Discovery Day",
+                    "year": "2023"
+                },
+                "cert2": {
+                    "name": "Certificado en Node.js",
+                    "issuer": "OpenJS Foundation",
+                    "year": "2022"
+                },
+                "cert3": {
+                    "name": "Rendimiento Web con JavaScript",
+                    "issuer": "Alura",
+                    "year": "2022"
+                },
+                "cert4": {
+                    "name": "Aceleración Global Dev #2",
+                    "issuer": "Avanade",
+                    "year": "2021"
+                },
+                "cert5": {
+                    "name": "Desarrollo de Aplicaciones con .NET",
+                    "issuer": "Microsoft",
+                    "year": "2021"
+                }
+            }
+        },
+        "projects": {
+            "title": "Proyectos Destacados",
+            "subtitle": "Algunos trabajos de los que estoy orgulloso",
+            "filter": {
+                "all": "Todos",
+                "web": "Web",
+                "mobile": "Móvil",
+                "opensource": "Open Source"
+            },
+            "projects-infos": {
+                "app-ideas": {
+                    "name": "APP IDEAS",
+                    "type": "Open Source",
+                    "desc": "Colección de ideas de aplicaciones para que los desarrolladores practiquen sus habilidades. Implementaciones de diversos conceptos y patrones de desarrollo.",
+                    "link": "https://dwrp.github.io/app-ideas/",
+                    "tags": ["React", "JavaScript", "Aprendizaje"]
+                },
+                "ominix": {
+                    "name": "OMINIX",
+                    "type": "Open Source",
+                    "desc": "Framework backend ligero construido sobre Express.js. Paquete NPM para facilitar la creación de APIs RESTful con Node.js.",
+                    "link": "https://www.npmjs.com/package/ominix",
+                    "tags": ["Node.js", "Express", "NPM"]
+                },
+                "ecommerce": {
+                    "name": "Plataforma E-commerce",
+                    "type": "Web",
+                    "desc": "Plataforma completa de comercio electrónico con carrito, pagos y panel admin. Construida con Next.js y Node.js.",
+                    "tags": ["Next.js", "Node.js", "PostgreSQL"]
+                },
+                "taskmanager": {
+                    "name": "Task Manager Pro",
+                    "type": "Web",
+                    "desc": "Aplicación de gestión de tareas en tiempo real con colaboración en equipo. Implementa WebSockets para actualizaciones en vivo.",
+                    "tags": ["React", "Socket.io", "MongoDB"]
+                },
+                "deliveryapp": {
+                    "name": "App de Delivery",
+                    "type": "Móvil",
+                    "desc": "Aplicación de delivery con seguimiento en tiempo real, integración con mapas y sistema de pagos.",
+                    "tags": ["React Native", "Firebase", "Maps API"]
+                }
+            },
+            "cta": "Ver Proyecto",
+            "github": "Ver en GitHub"
+        },
+        "contact": {
+            "title": "¿Trabajemos Juntos?",
+            "subtitle": "Siempre estoy abierto a nuevos desafíos y oportunidades",
+            "description": "Si buscas un desarrollador Fullstack apasionado por soluciones innovadoras, estoy listo para colaborar y contribuir al éxito de tu proyecto. ¡Creemos algo increíble juntos!",
+            "info": "Dónde encontrarme",
+            "location": "📍 Serra/ES, Brasil",
+            "phone": "📱 +55 (27) 99695-0412",
+            "cta": {
+                "email": "Enviar Email",
+                "linkedin": "LinkedIn",
+                "github": "GitHub",
+                "cv": "Descargar CV"
+            }
+        },
+        "footer": {
+            "rights": "© 2025 Douglas Pardim. Todos los derechos reservados.",
+            "built": "Desarrollado con",
+            "and": "y",
+            "madeWith": "Next.js, React y Tailwind CSS"
+        },
+        "switchToLightMode": "Modo Claro",
+        "switchToDarkMode": "Modo Oscuro",
+        "seo": {
+            "title": "Douglas Pardim - Desarrollador Fullstack Sénior",
+            "titleTemplate": "%s | Douglas Pardim",
+            "description": "Desarrollador Fullstack especializado en React, React Native y Node.js. Más de 5 años de experiencia creando aplicaciones web y móviles escalables y de alto rendimiento.",
+            "author": "Douglas Pardim",
+            "siteName": "Douglas Pardim - Desarrollador Fullstack",
+            "keywords": [
+                "Douglas Pardim",
+                "Desarrollador Fullstack",
+                "Desarrollador React",
+                "Desarrollador Node.js",
+                "Desarrollador React Native",
+                "Experto JavaScript",
+                "Desarrollador TypeScript",
+                "Desarrollo Web",
+                "Desarrollo Móvil",
+                "Next.js",
+                "NestJS",
+                "Desarrollo Frontend",
+                "Desarrollo Backend",
+                "Desarrollador Full Stack Brasil",
+                "Desarrollador Serra ES"
+            ],
+            "openGraph": {
+                "title": "Douglas Pardim - Desarrollador Fullstack Sénior",
+                "description": "Desarrollador Fullstack competente en React, Node.js y React Native. Creo interfaces intuitivas usando Tailwind CSS y TypeScript. Experto en Next.js y NestJS para aplicaciones escalables.",
+                "type": "website",
+                "locale": "es_ES",
+                "siteName": "Portafolio Douglas Pardim"
+            },
+            "twitter": {
+                "card": "summary_large_image",
+                "title": "Douglas Pardim - Desarrollador Fullstack Sénior",
+                "description": "Desarrollador Fullstack especializado en React, React Native y Node.js. Creando aplicaciones web y móviles de alto rendimiento.",
+                "creator": "@douglaspardim",
+                "site": "@douglaspardim"
+            }
+        }
+    }
+}
+
