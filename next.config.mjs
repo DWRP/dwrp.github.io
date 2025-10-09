@@ -1,12 +1,9 @@
 import analyzer from "@next/bundle-analyzer";
-import createNextIntlPlugin from "next-intl/plugin";
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
-const withNextIntl = createNextIntlPlugin();
-
 /** @type {import('next').NextConfig} */
-const nextConfig = withNextIntl({
+const nextConfig = {
   assetPrefix: "/",
   reactStrictMode: true,
   images: {
@@ -26,7 +23,7 @@ const nextConfig = withNextIntl({
   trailingSlash: true,
   ...(isGithubActions && { output: "export" }),
   output: "export"
-});
+};
 
 const withBundleAnalyzer = analyzer({
   enabled: process.env.ANALYZE === "true",

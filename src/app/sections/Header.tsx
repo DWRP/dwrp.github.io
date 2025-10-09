@@ -36,15 +36,24 @@ const Header = ({
   const updateActiveLink = (link?: string) => setActiveMenu(link || "");
 
   return (
-    <header className="fixed w-full bg-background px-4 lg:px-6 h-14 flex items-center justify-between border-b">
-      <Link
-        className="flex items-center"
-        href="#home"
-        onClick={() => updateActiveLink()}
-      >
-        <Image src="/dwrp.svg" alt="logotype" width={40} height={40} />
-        <span className="font-bold ml-2">Douglas Pardim</span>
-      </Link>
+    <>
+      {/* Overlay para fechar menu ao clicar fora */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-[90]"
+          onClick={toggleMenu}
+        />
+      )}
+
+      <header className="fixed w-full bg-background px-4 lg:px-6 h-14 flex items-center justify-between border-b z-50">
+        <Link
+          className="flex items-center"
+          href="#home"
+          onClick={() => updateActiveLink()}
+        >
+          <Image src="/dwrp.svg" alt="logotype" width={40} height={40} />
+          <span className="font-bold ml-2">Douglas Pardim</span>
+        </Link>
 
       <nav className="hidden md:flex ml-auto gap-4 sm:gap-6">
         <Link
@@ -58,12 +67,30 @@ const Header = ({
         </Link>
         <Link
           className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+            "experience"
+          )}`}
+          href="#experience"
+          onClick={() => updateActiveLink("experience")}
+        >
+          {t("nav.experience")}
+        </Link>
+        <Link
+          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
             "skills"
           )}`}
           href="#skills"
           onClick={() => updateActiveLink("skills")}
         >
           {t("nav.skills")}
+        </Link>
+        <Link
+          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+            "education"
+          )}`}
+          href="#education"
+          onClick={() => updateActiveLink("education")}
+        >
+          {t("nav.education")}
         </Link>
         <Link
           className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
@@ -125,8 +152,8 @@ const Header = ({
       {/* Menu Lateral */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-background shadow-lg transform ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-[-150%]"
-        } transition-transform duration-300 ease-in-out z-50`}
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out z-[100]`}
       >
         <button
           onClick={toggleMenu}
@@ -146,12 +173,30 @@ const Header = ({
           </Link>
           <Link
             className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "experience"
+            )}`}
+            href="#experience"
+            onClick={toggleMenu}
+          >
+            {t("nav.experience")}
+          </Link>
+          <Link
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
               "skills"
             )}`}
             href="#skills"
             onClick={toggleMenu}
           >
             {t("nav.skills")}
+          </Link>
+          <Link
+            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
+              "education"
+            )}`}
+            href="#education"
+            onClick={toggleMenu}
+          >
+            {t("nav.education")}
           </Link>
           <Link
             className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
@@ -174,6 +219,7 @@ const Header = ({
         </nav>
       </div>
     </header>
+    </>
   );
 };
 

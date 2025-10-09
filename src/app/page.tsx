@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import PageContent from "./page-content";
 
 export default function Page() {
-  redirect("/en");
+  return <PageContent />;
 }

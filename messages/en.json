@@ -1,8 +1,10 @@
 {
     "Index": {
         "nav": {
-            "about": "About Me",
+            "about": "About",
+            "experience": "Experience",
             "skills": "Skills",
+            "education": "Education",
             "projects": "Projects",
             "contact": "Contact",
             "locales": {
@@ -11,63 +13,216 @@
             }
         },
         "hero": {
-            "title": "Fullstack Developer React, React Native & Node",
-            "subtitle": "Bringing frontend and backend together to create fluid and scalable web applications.",
+            "greeting": "Hi, I'm",
+            "name": "Douglas Pardim",
+            "title": "Senior Fullstack Developer",
+            "subtitle": "Specialized in React, React Native & Node.js",
+            "description": "Transforming ideas into scalable and high-performance web and mobile applications",
             "cta": {
                 "projects": "View Projects",
-                "contact": "Contact Me"
+                "contact": "Let's Talk",
+                "cv": "Download CV"
+            },
+            "stats": {
+                "experience": "5+ Years",
+                "experienceLabel": "Experience",
+                "projects": "50+ Projects",
+                "projectsLabel": "Delivered",
+                "companies": "10+ Companies",
+                "companiesLabel": "Served"
             }
         },
         "about": {
             "title": "About Me",
-            "content1": "Hello, I'm Douglas Pardim, a passionate fullstack developer with over 5 years of experience in creating robust web applications. I specialize in JavaScript ecosystems, with experience in React, React Native, and Node.js.",
-            "content2": "My focus combines clean code practices, performance optimization, and user-centered design to deliver exceptional digital experiences."
+            "subtitle": "Technology enthusiast passionate about innovative solutions",
+            "intro": "Graduated in Informatics from IFES and Computer Science student at Estácio, with solid Fullstack development experience.",
+            "content1": "I'm Douglas Pardim, a technology enthusiast with Fullstack development experience. I seek challenges to explore new technologies and improve skills.",
+            "content2": "I work with React and React Native using Redux, ContextAPI, Styled Components, Design System Components, Next.js and API integration (GraphQL/REST).",
+            "content3": "In backend, I have experience with Node.js, NestJS and Express.js, plus SQL databases (MySQL, PostgreSQL, SQL Server) and NoSQL (MongoDB). I practice agile development, unit testing and version control with Git.",
+            "highlights": {
+                "title": "Main Competencies",
+                "item1": "Next.js, React.js and React Native",
+                "item2": "Node.js, NestJS and Express.js",
+                "item3": "Agile development (Scrum/Kanban)",
+                "item4": "SQL and NoSQL databases"
+            }
+        },
+        "experience": {
+            "title": "Professional Experience",
+            "subtitle": "My journey in software development",
+            "jobs": {
+                "job1": {
+                    "company": "Globalsys",
+                    "position": "Fullstack Developer",
+                    "period": "Nov/2021 - Present",
+                    "location": "Espírito Santo, Brazil",
+                    "description": "Development of applications with React Native and React code maintenance",
+                    "achievements": [
+                        "Technical leadership in web and mobile teams",
+                        "Ensuring robust and high-quality solutions",
+                        "React Native application development",
+                        "React code maintenance and optimization"
+                    ]
+                },
+                "job2": {
+                    "company": "Mil Sênior Lab",
+                    "position": "Developer",
+                    "period": "Jan/2021 - May/2023",
+                    "location": "Brazil",
+                    "description": "Development with Node.js, React and React Native",
+                    "achievements": [
+                        "Prioritizing deadlines and quality",
+                        "Maintaining clean and scalable code",
+                        "Effective collaboration between teams",
+                        "Fullstack development with Node.js and React"
+                    ]
+                },
+                "job3": {
+                    "company": "EDP Brasil",
+                    "position": "Intern",
+                    "period": "Apr/2019 - Jan/2021",
+                    "location": "Vitória/ES, Brazil",
+                    "description": "Internal demand support and system automation",
+                    "achievements": [
+                        "System automation and VBA to Python migration",
+                        "SAP system integration",
+                        "Node.js system development",
+                        "Company internal demand support"
+                    ]
+                }
+            },
+            "viewMore": "View more",
+            "viewLess": "View less"
         },
         "skills": {
-            "title": "Skills and Experience",
-            "frontend": "Frontend",
-            "backend": "Backend",
-            "mobile": "Mobile",
-            "devops": "DevOps"
+            "title": "Skills and Technologies",
+            "subtitle": "Tools I master to create amazing solutions",
+            "frontend": {
+                "title": "Frontend",
+                "description": "Modern and responsive interfaces"
+            },
+            "backend": {
+                "title": "Backend",
+                "description": "Robust and scalable APIs"
+            },
+            "mobile": {
+                "title": "Mobile",
+                "description": "Native and hybrid apps"
+            },
+            "devops": {
+                "title": "DevOps & Cloud",
+                "description": "Deploy and infrastructure"
+            },
+            "tools": {
+                "title": "Tools & Others",
+                "description": "Productivity and collaboration"
+            }
+        },
+        "education": {
+            "title": "Education & Certifications",
+            "subtitle": "Continuous learning is fundamental",
+            "degree": {
+                "title": "Computer Science",
+                "institution": "Estácio",
+                "period": "2020 - 2025",
+                "description": "Software development, algorithms and systems engineering education"
+            },
+            "certifications": {
+                "title": "Certifications",
+                "cert1": {
+                    "name": "Cloud Computing",
+                    "issuer": "AWS Discovery Day",
+                    "year": "2023"
+                },
+                "cert2": {
+                    "name": "Node.js Certificate",
+                    "issuer": "OpenJS Foundation",
+                    "year": "2022"
+                },
+                "cert3": {
+                    "name": "Web Performance Using JavaScript",
+                    "issuer": "Alura",
+                    "year": "2022"
+                },
+                "cert4": {
+                    "name": "Global Dev Acceleration #2",
+                    "issuer": "Avanade",
+                    "year": "2021"
+                },
+                "cert5": {
+                    "name": ".NET Application Development",
+                    "issuer": "Microsoft",
+                    "year": "2021"
+                }
+            }
         },
         "projects": {
-            "title": "Highlighted Projects",
+            "title": "Featured Projects",
+            "subtitle": "Some work I'm proud of",
+            "filter": {
+                "all": "All",
+                "web": "Web",
+                "mobile": "Mobile",
+                "opensource": "Open Source"
+            },
             "projects-infos": {
                 "app-ideas": {
                     "name": "APP IDEAS",
-                    "desc": "A compendium of codes designed to exhibit a diverse range of skills and coding aptitude.",
-                    "link": "https://dwrp.github.io/app-ideas/"
+                    "type": "Open Source",
+                    "desc": "Collection of application ideas for developers to practice their skills. Implementations of various development concepts and patterns.",
+                    "link": "https://dwrp.github.io/app-ideas/",
+                    "tags": ["React", "JavaScript", "Learning"]
                 },
                 "ominix": {
                     "name": "OMINIX",
-                    "desc": "Built a basic NPM package with Express.js for backend practice. Gained valuable technical knowledge.",
-                    "link": "https://www.npmjs.com/package/ominix"
+                    "type": "Open Source",
+                    "desc": "Lightweight backend framework built on Express.js. NPM package to facilitate creating RESTful APIs with Node.js.",
+                    "link": "https://www.npmjs.com/package/ominix",
+                    "tags": ["Node.js", "Express", "NPM"]
+                },
+                "ecommerce": {
+                    "name": "E-commerce Platform",
+                    "type": "Web",
+                    "desc": "Complete e-commerce platform with cart, payments, and admin panel. Built with Next.js and Node.js.",
+                    "tags": ["Next.js", "Node.js", "PostgreSQL"]
+                },
+                "taskmanager": {
+                    "name": "Task Manager Pro",
+                    "type": "Web",
+                    "desc": "Real-time task management application with team collaboration. Implements WebSockets for live updates.",
+                    "tags": ["React", "Socket.io", "MongoDB"]
+                },
+                "deliveryapp": {
+                    "name": "Delivery App",
+                    "type": "Mobile",
+                    "desc": "Delivery app with real-time tracking, maps integration, and payment system.",
+                    "tags": ["React Native", "Firebase", "Maps API"]
                 }
             },
-            "ecommerce": "E-commerce Platform",
-            "ecommerce-desc": "A complete online store with React and Node.js",
-            "taskmanager": "Task Management App",
-            "taskmanager-desc": "Real-time collaboration tool using Socket.io and React",
-            "blogcms": "Blog CMS",
-            "blogcms-desc": "Custom content management system with Next.js and GraphQL",
-            "cta": "View Project"
+            "cta": "View Project",
+            "github": "View on GitHub"
         },
         "contact": {
-            "title": "Get in Touch",
-            "info": "Contact Information",
-            "form": {
-                "name": "Your Name",
-                "email": "Your Email",
-                "message": "Your Message",
-                "submit": "Send Message"
+            "title": "Let's Work Together?",
+            "subtitle": "I'm always open to new challenges and opportunities",
+            "description": "If you're looking for a Fullstack developer passionate about innovative solutions, I'm ready to collaborate and contribute to your project's success. Let's create something amazing together!",
+            "info": "Where to find me",
+            "location": "📍 Serra/ES, Brazil",
+            "phone": "📱 +55 (27) 99695-0412",
+            "cta": {
+                "email": "Send Email",
+                "linkedin": "LinkedIn",
+                "github": "GitHub",
+                "cv": "Download CV"
             }
         },
         "footer": {
-            "rights": "© 2023 Douglas Pardim. All rights reserved."
+            "rights": "© 2025 Douglas Pardim. All rights reserved.",
+            "built": "Built with",
+            "and": "and",
+            "madeWith": "Next.js, React & Tailwind CSS"
         },
-        "switchToLightMode": "Switch to Light Mode",
-        "switchToDarkMode": "Switch to Dark Mode",
-        "formSubmissionAlert": "Thank you for your message! I will get back to you soon.",
-        "formSubmissionError": "We cannot send this message, please, try again!"
+        "switchToLightMode": "Light Mode",
+        "switchToDarkMode": "Dark Mode"
     }
 }
