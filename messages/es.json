@@ -202,7 +202,8 @@
                 }
             },
             "cta": "Ver Proyecto",
-            "github": "Ver en GitHub"
+            "github": "Ver en GitHub",
+            "moreProjects": "¿Quieres ver más proyectos?"
         },
         "contact": {
             "title": "¿Trabajemos Juntos?",
@@ -216,7 +217,9 @@
                 "linkedin": "LinkedIn",
                 "github": "GitHub",
                 "cv": "Descargar CV"
-            }
+            },
+            "readyTitle": "¿Listo para comenzar un proyecto?",
+            "readyDescription": "Contáctame a través del email o redes sociales. ¡Hablemos sobre cómo puedo ayudar con tu proyecto!"
         },
         "footer": {
             "rights": "© 2025 Douglas Pardim. Todos los derechos reservados.",

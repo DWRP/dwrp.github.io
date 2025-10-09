@@ -9,7 +9,9 @@
             "contact": "Contato",
             "locales": {
                 "en": "Inglês",
-                "pt-BR": "Português"
+                "pt-BR": "Português",
+                "es": "Espanhol",
+                "zh-CN": "Chinês"
             }
         },
         "hero": {
@@ -200,7 +202,8 @@
                 }
             },
             "cta": "Ver Projeto",
-            "github": "Ver no GitHub"
+            "github": "Ver no GitHub",
+            "moreProjects": "Quer ver mais projetos?"
         },
         "contact": {
             "title": "Vamos Trabalhar Juntos?",
@@ -214,7 +217,9 @@
                 "linkedin": "LinkedIn",
                 "github": "GitHub",
                 "cv": "Download CV"
-            }
+            },
+            "readyTitle": "Pronto para começar um projeto?",
+            "readyDescription": "Entre em contato comigo através do email ou redes sociais. Vamos conversar sobre como posso ajudar no seu projeto!"
         },
         "footer": {
             "rights": "© 2025 Douglas Pardim. Todos os direitos reservados.",

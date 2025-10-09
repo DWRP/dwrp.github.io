@@ -151,7 +151,7 @@ export const ProjectsSection = () => {
           {...fadeInUp}
         >
           <p className="text-muted-foreground mb-4">
-            Quer ver mais projetos?
+            {t("projects.moreProjects")}
           </p>
           <Link href="https://github.com/DWRP" target="_blank">
             <Button

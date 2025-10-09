@@ -202,7 +202,8 @@
                 }
             },
             "cta": "查看项目",
-            "github": "在 GitHub 上查看"
+            "github": "在 GitHub 上查看",
+            "moreProjects": "想看更多项目吗？"
         },
         "contact": {
             "title": "让我们一起合作？",
@@ -216,7 +217,9 @@
                 "linkedin": "LinkedIn",
                 "github": "GitHub",
                 "cv": "下载简历"
-            }
+            },
+            "readyTitle": "准备好开始项目了吗？",
+            "readyDescription": "通过邮件或社交媒体联系我。让我们谈谈我如何帮助您的项目！"
         },
         "footer": {
             "rights": "© 2025 Douglas Pardim。保留所有权利。",

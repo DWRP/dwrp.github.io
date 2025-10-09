@@ -1,5 +1,65 @@
 # Changelog - Modernização do Site Pessoal
 
+## 2025-01-10 - Correção de Internacionalização
+
+### 🔧 Problemas Críticos Corrigidos
+
+#### 1. ✅ Sincronização do Seletor de Idiomas
+- **Problema**: O Select no Header não sincronizava com o idioma atual
+- **Solução**: Implementada sincronização entre `useClientLocale` e Zustand store
+- **Resultado**: Seletor sempre mostra o idioma correto selecionado
+
+#### 2. ✅ Suporte Completo para 4 Idiomas
+- **Expandido**: `useClientLocale` agora suporta en, pt-BR, es, zh-CN
+- **Detecção automática**: Melhorada para detectar espanhol e chinês do navegador
+- **Validação**: localStorage valida todos os 4 idiomas suportados
+
+#### 3. ✅ Textos Hardcoded Removidos
+- **ContactSection**: "Pronto para começar um projeto?" → `{t("contact.readyTitle")}`
+- **ProjectsSection**: "Quer ver mais projetos?" → `{t("projects.moreProjects")}`
+- **Resultado**: Todos os textos agora são traduzidos corretamente
+
+#### 4. ✅ Traduções Completas Adicionadas
+- **Novas chaves**: `readyTitle`, `readyDescription`, `moreProjects` em todos os idiomas
+- **Nomes dos idiomas**: Completados em `nav.locales` para en, pt-BR, es, zh-CN
+- **Cobertura**: 100% das strings agora traduzidas
+
+#### 5. ✅ Atributo HTML Lang Atualizado
+- **Melhorado**: Atributo `lang` do HTML agora usa diretamente o locale
+- **Suporte**: Funciona corretamente para todos os 4 idiomas
+
+### 📁 Arquivos Modificados
+
+#### Código
+- `src/hooks/useClientLocale.ts` - Suporte expandido para 4 idiomas
+- `src/app/page-content.tsx` - Sincronização com Zustand store
+- `src/components/sections/ContactSection.tsx` - Textos hardcoded removidos
+- `src/components/sections/ProjectsSection.tsx` - Textos hardcoded removidos
+
+#### Traduções
+- `messages/en.json` - Novas chaves e nomes de idiomas
+- `messages/pt-BR.json` - Novas chaves e nomes de idiomas
+- `messages/es.json` - Novas chaves adicionadas
+- `messages/zh-CN.json` - Novas chaves adicionadas
+
+### 🎯 Resultados Alcançados
+
+✅ **Seletor sincronizado**: Header sempre mostra idioma atual  
+✅ **4 idiomas funcionais**: en, pt-BR, es, zh-CN totalmente suportados  
+✅ **Detecção automática**: Navegador detecta idioma preferido  
+✅ **Persistência**: Idioma salvo no localStorage entre sessões  
+✅ **Zero textos hardcoded**: Todos os textos traduzidos corretamente  
+✅ **Experiência consistente**: Troca de idioma atualiza toda a interface  
+
+### 🔄 Comportamento Esperado
+
+1. **Primeira visita**: Detecta idioma do navegador automaticamente
+2. **Troca de idioma**: Seletor atualiza imediatamente + todos os textos mudam
+3. **Persistência**: Idioma escolhido é mantido entre sessões
+4. **Sincronização**: Header sempre mostra o idioma atualmente selecionado
+
+---
+
 ## 2025-01-10 - Melhorias de SEO e Internacionalização
 
 ### 🌍 Expansão Multilíngue

@@ -17,7 +17,7 @@ import {
 export default function PageContent() {
   const [locale, setLocale] = useClientLocale();
   const [messages, setMessages] = useState<any>(null);
-  const { theme, setTheme, setActiveMenu } = useAppStore();
+  const { theme, setTheme, setActiveMenu, setLocale: setStoreLocale } = useAppStore();
   const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
 
   // Carregar mensagens dinamicamente
@@ -32,8 +32,9 @@ export default function PageContent() {
   const changeLanguage = useCallback(
     (newLang: Locale) => {
       setLocale(newLang);
+      setStoreLocale(newLang); // Sincronizar com Zustand store
     },
-    [setLocale]
+    [setLocale, setStoreLocale]
   );
 
   useEffect(() => {
@@ -84,7 +85,7 @@ export default function PageContent() {
     document.head.appendChild(websiteScript);
 
     // Update html lang attribute based on locale
-    document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
+    document.documentElement.lang = locale;
   }, [locale]);
 
   if (!messages) {

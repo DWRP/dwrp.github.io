@@ -114,10 +114,10 @@ export const ContactSection = () => {
                     <Mail className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold">
-                    Pronto para começar um projeto?
+                    {t("contact.readyTitle")}
                   </h3>
                   <p className="text-muted-foreground max-w-xl mx-auto">
-                    Entre em contato comigo através do email ou redes sociais. Vamos conversar sobre como posso ajudar no seu projeto!
+                    {t("contact.readyDescription")}
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center pt-4">
                     <Link href="mailto:douglas.skd@gmail.com">
