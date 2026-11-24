@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -8,217 +10,188 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Locale, locales } from "@/locales";
-import { Moon, Sun, Menu } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppStore } from "@/store/app";
+import { siteConfig } from "@/lib/siteConfig";
+
+const NAV_LINKS = [
+  "about",
+  "experience",
+  "skills",
+  "education",
+  "projects",
+  "contact",
+] as const;
 
 const Header = ({
+  locale,
   isDarkMode,
-  setIsDarkMode,
+  toggleTheme,
   changeLanguage,
 }: {
+  locale: Locale;
   isDarkMode: boolean;
-  setIsDarkMode: (dark: boolean) => void;
+  toggleTheme: () => void;
   changeLanguage: (lang: Locale) => void;
 }) => {
   const t = useTranslations("Index");
-  const { lang, activeMenu, setActiveMenu } = useAppStore();
+  const { activeMenu, setActiveMenu } = useAppStore();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuId = useId();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => setIsMenuOpen((open) => !open);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    closeButtonRef.current?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
 
   const checkActiveLink = (link: string) =>
-    activeMenu === link ? "text-gray-500" : "";
+    activeMenu === link
+      ? "text-primary font-semibold"
+      : "text-foreground/80";
 
   const updateActiveLink = (link?: string) => setActiveMenu(link || "");
 
   return (
     <>
-      {/* Overlay para fechar menu ao clicar fora */}
       {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-[90]"
-          onClick={toggleMenu}
+        <button
+          type="button"
+          className="fixed inset-0 z-[90] bg-black/50 md:hidden"
+          aria-label="Close menu"
+          onClick={closeMenu}
         />
       )}
 
-      <header className="fixed w-full bg-background px-4 lg:px-6 h-14 flex items-center justify-between border-b z-50">
+      <header className="fixed z-50 flex h-14 w-full items-center justify-between border-b border-border/80 bg-background/90 px-4 backdrop-blur-md lg:px-6">
         <Link
           className="flex items-center"
           href="#home"
           onClick={() => updateActiveLink()}
         >
-          <Image src="/dwrp.svg" alt="logotype" width={40} height={40} />
-          <span className="font-bold ml-2">Douglas Pardim</span>
+          <Image
+            src="/dwrp.svg"
+            alt=""
+            width={40}
+            height={40}
+            aria-hidden
+          />
+          <span className="font-display ml-2 font-bold tracking-tight">
+            {siteConfig.name}
+          </span>
         </Link>
 
-      <nav className="hidden md:flex ml-auto gap-4 sm:gap-6">
-        <Link
-          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-            "about"
-          )}`}
-          href="#about"
-          onClick={() => updateActiveLink("about")}
-        >
-          {t("nav.about")}
-        </Link>
-        <Link
-          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-            "experience"
-          )}`}
-          href="#experience"
-          onClick={() => updateActiveLink("experience")}
-        >
-          {t("nav.experience")}
-        </Link>
-        <Link
-          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-            "skills"
-          )}`}
-          href="#skills"
-          onClick={() => updateActiveLink("skills")}
-        >
-          {t("nav.skills")}
-        </Link>
-        <Link
-          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-            "education"
-          )}`}
-          href="#education"
-          onClick={() => updateActiveLink("education")}
-        >
-          {t("nav.education")}
-        </Link>
-        <Link
-          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-            "projects"
-          )}`}
-          href="#projects"
-          onClick={() => updateActiveLink("projects")}
-        >
-          {t("nav.projects")}
-        </Link>
-        <Link
-          className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-            "contact"
-          )}`}
-          href="#contact"
-          onClick={() => updateActiveLink("contact")}
-        >
-          {t("nav.contact")}
-        </Link>
-      </nav>
-
-      <div className="flex items-center gap-4 ml-auto md:ml-4">
-        <Select value={lang} onValueChange={changeLanguage}>
-          <SelectTrigger className="w-[100px] md:w-[120px]">
-            <SelectValue placeholder="Language" />
-          </SelectTrigger>
-          <SelectContent>
-            {locales.map((locale, index) => (
-              <SelectItem value={locale} key={`${locale}-${index}`}>
-                {t(`nav.locales.${locale}`)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          aria-label={
-            isDarkMode ? t("switchToLightMode") : t("switchToDarkMode")
-          }
-        >
-          {isDarkMode ? (
-            <Sun className="h-5 w-5" />
-          ) : (
-            <Moon className="h-5 w-5" />
-          )}
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="flex items-center justify-center md:hidden"
-          onClick={toggleMenu}
-        >
-          <Menu className="h-5 w-5" />
-        </Button>
-      </div>
-
-      {/* Menu Lateral */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-background shadow-lg transform ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out z-[100]`}
-      >
-        <button
-          onClick={toggleMenu}
-          className="absolute top-4 right-4 text-gray-600 dark:text-gray-300"
-        >
-          ✕
-        </button>
-        <nav className="flex flex-col items-start p-4 mt-8 space-y-4">
-          <Link
-            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-              "about"
-            )}`}
-            href="#about"
-            onClick={toggleMenu}
-          >
-            {t("nav.about")}
-          </Link>
-          <Link
-            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-              "experience"
-            )}`}
-            href="#experience"
-            onClick={toggleMenu}
-          >
-            {t("nav.experience")}
-          </Link>
-          <Link
-            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-              "skills"
-            )}`}
-            href="#skills"
-            onClick={toggleMenu}
-          >
-            {t("nav.skills")}
-          </Link>
-          <Link
-            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-              "education"
-            )}`}
-            href="#education"
-            onClick={toggleMenu}
-          >
-            {t("nav.education")}
-          </Link>
-          <Link
-            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-              "projects"
-            )}`}
-            href="#projects"
-            onClick={toggleMenu}
-          >
-            {t("nav.projects")}
-          </Link>
-          <Link
-            className={`text-sm font-medium hover:underline underline-offset-4 ${checkActiveLink(
-              "contact"
-            )}`}
-            href="#contact"
-            onClick={toggleMenu}
-          >
-            {t("nav.contact")}
-          </Link>
+        <nav className="ml-auto hidden gap-4 sm:gap-6 md:flex" aria-label="Primary">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link}
+              className={`text-sm font-medium underline-offset-4 hover:underline ${checkActiveLink(link)}`}
+              href={`#${link}`}
+              onClick={() => updateActiveLink(link)}
+            >
+              {t(`nav.${link}`)}
+            </Link>
+          ))}
         </nav>
-      </div>
-    </header>
+
+        <div className="ml-auto flex items-center gap-2 md:ml-4 md:gap-4">
+          <Select
+            value={locale}
+            onValueChange={(value) => changeLanguage(value as Locale)}
+          >
+            <SelectTrigger className="w-[100px] md:w-[120px]" aria-label="Language">
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent>
+              {locales.map((item) => (
+                <SelectItem value={item} key={item}>
+                  {t(`nav.locales.${item}`)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={
+              isDarkMode ? t("switchToLightMode") : t("switchToDarkMode")
+            }
+          >
+            {isDarkMode ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
+          <Button
+            ref={menuButtonRef}
+            variant="ghost"
+            size="icon"
+            className="flex items-center justify-center md:hidden"
+            onClick={toggleMenu}
+            aria-expanded={isMenuOpen}
+            aria-controls={menuId}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
+
+        <div
+          id={menuId}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          hidden={!isMenuOpen}
+          className={`fixed top-0 right-0 z-[100] h-full w-64 transform bg-background shadow-lg transition-transform duration-300 ease-in-out md:hidden ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={closeMenu}
+            className="absolute top-4 right-4 rounded-md p-2 text-muted-foreground hover:text-foreground"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <nav className="mt-8 flex flex-col items-start space-y-4 p-4" aria-label="Mobile">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link}
+                className={`text-sm font-medium underline-offset-4 hover:underline ${checkActiveLink(link)}`}
+                href={`#${link}`}
+                onClick={() => {
+                  updateActiveLink(link);
+                  closeMenu();
+                }}
+              >
+                {t(`nav.${link}`)}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
     </>
   );
 };

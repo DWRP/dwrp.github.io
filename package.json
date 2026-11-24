@@ -2,16 +2,19 @@
   "name": "dwrp.github.io",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "analyze": "node ./scripts/analyze.mjs"
   },
   "dependencies": {
-    "@hookform/resolvers": "^7.0.8",
     "@next/bundle-analyzer": "^16.4.6",
-    "@radix-ui/react-progress": "^1.2.1",
     "@radix-ui/react-select": "^2.4.1",
     "@radix-ui/react-slot": "^1.5.0",
     "class-variance-authority": "^0.7.1",
@@ -22,9 +25,7 @@
     "next-intl": "^4.15.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-hook-form": "^7.92.0",
     "tailwind-merge": "^3.7.1",
-    "zod": "^4.6.7",
     "zustand": "^5.1.0"
   },
   "devDependencies": {
@@ -38,5 +39,5 @@
     "tailwindcss": "^4.3.5",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@12.23.0+sha512.02da94ffaf133f46074322afe552f90d40b5f71ae259aefbccdacc5085b1d617e98d65e0131f5748b9b67445978ee5055d7d59a473f1eef0d504854fefcd5975"
+  "packageManager": "pnpm@12.23.0+sha512.02da94ffaf133f46074322afe552f90d40b5f71ae259aefbccdacc5085d7d59a473f1eef0d504854fefcd5975"
 }

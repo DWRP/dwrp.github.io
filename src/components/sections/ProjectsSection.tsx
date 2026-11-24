@@ -8,81 +8,50 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Github } from "@/components/icons/brand";
+import { SectionHeader } from "@/components/sections/SectionHeader";
+import { siteConfig } from "@/lib/siteConfig";
+import { getMotionProps } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+
+const projects = [
+  { id: "app-ideas", hasLink: true, hasGithub: true },
+  { id: "ominix", hasLink: true, hasGithub: true },
+  { id: "portfolio", hasLink: true, hasGithub: true },
+] as const;
 
 export const ProjectsSection = () => {
   const t = useTranslations("Index");
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-    viewport: { once: true }
-  };
-
-  const projects = [
-    {
-      id: "app-ideas",
-      hasLink: true,
-      hasGithub: true
-    },
-    {
-      id: "ominix",
-      hasLink: true,
-      hasGithub: true
-    },
-    {
-      id: "ecommerce",
-      hasLink: false,
-      hasGithub: false
-    },
-    {
-      id: "taskmanager",
-      hasLink: false,
-      hasGithub: false
-    },
-    {
-      id: "deliveryapp",
-      hasLink: false,
-      hasGithub: false
-    }
-  ];
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <section
-      id="projects"
-      className="w-full py-20 md:py-28 lg:py-36"
-    >
+    <section id="projects" className="w-full py-20 md:py-28 lg:py-36">
       <div className="container px-4 md:px-6">
-        <motion.div 
-          className="text-center mb-12 md:mb-16"
-          {...fadeInUp}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            {t("projects.title")}
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t("projects.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          title={t("projects.title")}
+          subtitle={t("projects.subtitle")}
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => {
-            const tags = t.raw(`projects.projects-infos.${project.id}.tags`) as string[] | undefined;
+            const tags = t.raw(
+              `projects.projects-infos.${project.id}.tags`
+            ) as string[] | undefined;
 
             return (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                {...getMotionProps(prefersReducedMotion)}
+                transition={{
+                  duration: prefersReducedMotion ? 0.01 : 0.6,
+                  delay: prefersReducedMotion ? 0 : index * 0.08,
+                }}
               >
-                <Card className="h-full card-hover border-purple-500/20 shadow-lg flex flex-col">
-                  <div className="h-2 gradient-primary" />
-                  <CardContent className="p-6 flex flex-col flex-1">
+                <Card className="flex h-full flex-col border-primary/15 shadow-lg card-hover">
+                  <div className="h-1.5 gradient-primary" />
+                  <CardContent className="flex flex-1 flex-col p-6">
                     <div className="flex-1">
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-xl font-bold">
+                      <div className="mb-3 flex items-start justify-between gap-2">
+                        <h3 className="font-display text-xl font-bold">
                           {t(`projects.projects-infos.${project.id}.name`)}
                         </h3>
                         {t.has(`projects.projects-infos.${project.id}.type`) && (
@@ -91,34 +60,28 @@ export const ProjectsSection = () => {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-muted-foreground mb-4 text-sm">
+                      <p className="mb-4 text-sm text-muted-foreground">
                         {t(`projects.projects-infos.${project.id}.desc`)}
                       </p>
                       {tags && tags.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {tags.map((tag, tagIndex) => (
-                            <Badge
-                              key={tagIndex}
-                              variant="outline"
-                              className="text-xs"
-                            >
+                        <div className="mb-4 flex flex-wrap gap-2">
+                          {tags.map((tag) => (
+                            <Badge key={tag} variant="outline" className="text-xs">
                               {tag}
                             </Badge>
                           ))}
                         </div>
                       )}
                     </div>
-                    <div className="flex gap-2 pt-4 border-t">
+                    <div className="flex gap-2 border-t pt-4">
                       {project.hasLink && (
                         <Link
                           href={t(`projects.projects-infos.${project.id}.link`)}
                           target="_blank"
+                          rel="noopener noreferrer"
                           className="flex-1"
                         >
-                          <Button
-                            variant="default"
-                            className="w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-                          >
+                          <Button variant="default" className="w-full">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             {t("projects.cta")}
                           </Button>
@@ -126,15 +89,19 @@ export const ProjectsSection = () => {
                       )}
                       {project.hasGithub && (
                         <Link
-                          href={t(`projects.projects-infos.${project.id}.link`)}
+                          href={t(
+                            `projects.projects-infos.${project.id}.github`
+                          )}
                           target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t("projects.github")}
                           className={project.hasLink ? "" : "flex-1"}
                         >
                           <Button
                             variant="outline"
                             className={project.hasLink ? "" : "w-full"}
                           >
-                            <Github className="h-4 w-4" />
+                            <Github className="h-4 w-4" aria-hidden />
                           </Button>
                         </Link>
                       )}
@@ -146,21 +113,18 @@ export const ProjectsSection = () => {
           })}
         </div>
 
-        {/* CTA for more projects */}
         <motion.div
-          className="text-center mt-12"
-          {...fadeInUp}
+          className="mt-12 text-center"
+          {...getMotionProps(prefersReducedMotion)}
         >
-          <p className="text-muted-foreground mb-4">
-            {t("projects.moreProjects")}
-          </p>
-          <Link href="https://github.com/DWRP" target="_blank">
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-purple-500/50 hover:border-purple-500"
-            >
-              <Github className="mr-2 h-5 w-5" />
+          <p className="mb-4 text-muted-foreground">{t("projects.moreProjects")}</p>
+          <Link
+            href={siteConfig.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" size="lg">
+              <Github className="mr-2 h-5 w-5" aria-hidden />
               {t("projects.github")}
             </Button>
           </Link>
@@ -169,4 +133,3 @@ export const ProjectsSection = () => {
     </section>
   );
 };
-

@@ -1,4 +1,3 @@
-import { Locale } from "@/locales";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -6,18 +5,16 @@ type Theme = "light" | "dark";
 
 interface AppState {
   theme: Theme;
-  lang: Locale;
   activeMenu: string;
   setTheme: (theme: Theme) => void;
-  setLocale: (lang: Locale) => void;
   setActiveMenu: (activeMenu: string) => void;
+  toggleTheme: () => void;
 }
 
 export const useAppStore = create<AppState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       theme: "dark",
-      lang: "en",
       activeMenu: "",
       setActiveMenu: (activeMenu: string) => {
         set({ activeMenu });
@@ -25,13 +22,14 @@ export const useAppStore = create<AppState>()(
       setTheme: (theme: Theme) => {
         set({ theme });
       },
-      setLocale: (lang: Locale) => {
-        set({ lang });
+      toggleTheme: () => {
+        set({ theme: get().theme === "dark" ? "light" : "dark" });
       },
     }),
     {
       name: "app",
       storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ theme: state.theme }),
     }
   )
 );

@@ -94,7 +94,8 @@
                 }
             },
             "viewMore": "查看更多",
-            "viewLess": "收起"
+            "viewLess": "收起",
+            "achievementsTitle": "主要成就"
         },
         "skills": {
             "title": "技能和技术",
@@ -161,18 +162,13 @@
         "projects": {
             "title": "精选项目",
             "subtitle": "一些我引以为豪的作品",
-            "filter": {
-                "all": "全部",
-                "web": "Web",
-                "mobile": "移动",
-                "opensource": "开源"
-            },
             "projects-infos": {
                 "app-ideas": {
                     "name": "APP IDEAS",
                     "type": "开源",
                     "desc": "供开发人员练习技能的应用创意集合。各种开发概念和模式的实现。",
                     "link": "https://dwrp.github.io/app-ideas/",
+                    "github": "https://github.com/dwrp/app-ideas",
                     "tags": ["React", "JavaScript", "学习"]
                 },
                 "ominix": {
@@ -180,25 +176,16 @@
                     "type": "开源",
                     "desc": "基于 Express.js 构建的轻量级后端框架。用于简化使用 Node.js 创建 RESTful API 的 NPM 包。",
                     "link": "https://www.npmjs.com/package/ominix",
+                    "github": "https://github.com/dwrp/ominix",
                     "tags": ["Node.js", "Express", "NPM"]
                 },
-                "ecommerce": {
-                    "name": "电商平台",
+                "portfolio": {
+                    "name": "个人作品集",
                     "type": "Web",
-                    "desc": "具有购物车、支付和管理面板的完整电商平台。使用 Next.js 和 Node.js 构建。",
-                    "tags": ["Next.js", "Node.js", "PostgreSQL"]
-                },
-                "taskmanager": {
-                    "name": "Task Manager Pro",
-                    "type": "Web",
-                    "desc": "具有团队协作功能的实时任务管理应用程序。实现 WebSocket 进行实时更新。",
-                    "tags": ["React", "Socket.io", "MongoDB"]
-                },
-                "deliveryapp": {
-                    "name": "配送应用",
-                    "type": "移动",
-                    "desc": "具有实时跟踪、地图集成和支付系统的配送应用程序。",
-                    "tags": ["React Native", "Firebase", "Maps API"]
+                    "desc": "本站 — 使用 Next.js、React 和 Tailwind CSS 构建并部署在 GitHub Pages 上的多语言静态作品集。",
+                    "link": "https://dwrp.github.io/",
+                    "github": "https://github.com/dwrp/dwrp.github.io",
+                    "tags": ["Next.js", "TypeScript", "Tailwind CSS"]
                 }
             },
             "cta": "查看项目",
@@ -210,8 +197,12 @@
             "subtitle": "我总是乐于接受新的挑战和机会",
             "description": "如果您正在寻找一位热衷于创新解决方案的全栈开发工程师，我已准备好协作并为您的项目成功做出贡献。让我们一起创造令人惊叹的东西！",
             "info": "在哪里找到我",
-            "location": "📍 巴西塞拉/ES",
-            "phone": "📱 +55 (27) 99695-0412",
+            "location": "巴西塞拉/ES",
+            "phone": "+55 (27) 99695-0412",
+            "socialGithub": "GitHub 主页",
+            "socialLinkedin": "LinkedIn 主页",
+            "socialEmail": "发送邮件",
+            "scrollToAbout": "滚动到关于部分",
             "cta": {
                 "email": "发送邮件",
                 "linkedin": "LinkedIn",
@@ -222,7 +213,7 @@
             "readyDescription": "通过邮件或社交媒体联系我。让我们谈谈我如何帮助您的项目！"
         },
         "footer": {
-            "rights": "© 2025 Douglas Pardim。保留所有权利。",
+            "rights": "© 2026 Douglas Pardim。保留所有权利。",
             "built": "使用以下技术构建",
             "and": "和",
             "madeWith": "Next.js、React 和 Tailwind CSS"

@@ -4,8 +4,8 @@
 [![License](https://img.shields.io/badge/许可证-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Author](https://img.shields.io/badge/作者-Douglas%20Pardim-orange)](https://github.com/dwrp)
 [![CI/CD](https://github.com/dwrp/dwrp.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/dwrp/dwrp.github.io/actions)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2-blue)](https://react.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
 
 > 🌍 **语言**: [English](../README.md) | [Português](./README-pt-BR.md) | [Español](./README-es.md) | **中文**
 
@@ -21,13 +21,13 @@
 - **完全响应式**: 在桌面、平板和移动设备上的完美体验
 - **多语言**: 完整支持葡萄牙语、英语、西班牙语和简体中文
 - **SEO 优化**: 完整的 meta 标签、Open Graph、Twitter Cards 和 JSON-LD structured data
-- **性能**: 使用 Next.js 15 和 React 19 优化的静态构建
+- **性能**: 使用 Next.js 16 和 React 19 优化的静态构建
 - **主题**: 明暗模式切换
 
 ## 🚀 使用的技术
 
 ### 核心
-- **[Next.js 15.5](https://nextjs.org/)** - 具有 SSG/SSR 功能的 React 框架
+- **[Next.js 16](https://nextjs.org/)** - 静态导出的 React 框架
 - **[React 19.2](https://react.dev/)** - 用于构建用户界面的 JavaScript 库
 - **[TypeScript](https://www.typescriptlang.org/)** - JavaScript 的类型化超集
 
@@ -88,7 +88,7 @@ dwrp.github.io/
 │   ├── dwrp.svg           # Logo
 │   └── favicon.ico        # Favicon
 ├── src/
-│   ├── app/               # App Router（Next.js 15）
+│   ├── app/               # App Router（Next.js 16）
 │   │   ├── layout.tsx     # 带 metadata 的根布局
 │   │   ├── page.tsx       # 主页面
 │   │   ├── page-content.tsx # 带 i18n 和 JSON-LD 的内容
@@ -118,44 +118,37 @@ dwrp.github.io/
 
 ### 先决条件
 
-- Node.js 18+ 或更高版本
-- Yarn 或 NPM
+- Node.js 22+
+- [pnpm](https://pnpm.io/)
 
 ### 安装
 
 ```bash
-# 克隆仓库
 git clone https://github.com/dwrp/dwrp.github.io.git
-
-# 进入目录
 cd dwrp.github.io
-
-# 安装依赖
-yarn install
-# 或
-npm install
+pnpm install
 ```
 
 ### 开发
 
 ```bash
-# 启动开发服务器
-yarn dev
-# 或
-npm run dev
-
-# 访问 http://localhost:3000
+pnpm dev
+# http://localhost:3000
 ```
 
 ### 生产构建
 
 ```bash
-# 生成静态构建
-yarn build
-# 或
-npm run build
+pnpm build
+# 输出在 /out
+```
 
-# 构建将在 /out 目录中生成
+### 其他脚本
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm analyze
 ```
 
 ### 部署

@@ -6,204 +6,146 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import { Github, Linkedin } from "@/components/icons/brand";
+import { siteConfig } from "@/lib/siteConfig";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export const HeroSection = () => {
   const t = useTranslations("Index");
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
+    initial: prefersReducedMotion ? false : { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+    transition: { duration: prefersReducedMotion ? 0.01 : 0.55 },
   };
 
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative flex min-h-[100svh] w-full items-center overflow-hidden"
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 gradient-primary opacity-90 dark:opacity-80" />
-      
-      {/* Animated floating shapes */}
-      <motion.div
-        className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -100, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsla(173,80%,36%,0.22),_transparent_55%),linear-gradient(160deg,_hsl(210_40%_98%)_0%,_hsl(173_30%_94%)_45%,_hsl(210_25%_92%)_100%)] dark:bg-[radial-gradient(ellipse_at_top,_hsla(173,70%,30%,0.28),_transparent_55%),linear-gradient(160deg,_hsl(210_40%_6%)_0%,_hsl(200_30%_10%)_50%,_hsl(210_35%_8%)_100%)]"
+        aria-hidden
       />
-      <motion.div
-        className="absolute bottom-20 right-10 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 dark:opacity-20"
-        animate={{
-          x: [0, -100, 0],
-          y: [0, 100, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+      <div
+        className="absolute inset-0 opacity-[0.35] dark:opacity-[0.2] [background-image:linear-gradient(to_right,hsla(210,20%,50%,0.08)_1px,transparent_1px),linear-gradient(to_bottom,hsla(210,20%,50%,0.08)_1px,transparent_1px)] [background-size:48px_48px]"
+        aria-hidden
       />
 
-      {/* Content */}
-      <div className="container relative z-10 px-4 md:px-6">
+      <div className="container relative z-10 px-4 py-24 md:px-6 md:py-28">
         <motion.div
-          className="flex flex-col items-center space-y-8 text-center"
-          variants={staggerChildren}
+          className="mx-auto flex max-w-4xl flex-col items-start gap-8 text-left"
           initial="initial"
           animate="animate"
         >
-          <motion.div className="space-y-4" variants={fadeInUp}>
-            <motion.p 
-              className="text-lg md:text-xl text-white/90 font-medium"
-              variants={fadeInUp}
-            >
-              {t("hero.greeting")}
-            </motion.p>
-            <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
-              variants={fadeInUp}
-            >
-              {t("hero.name")}
-            </motion.h1>
-            <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white/95"
-              variants={fadeInUp}
-            >
-              {t("hero.title")}
-            </motion.h2>
-            <motion.p 
-              className="text-lg md:text-xl text-white/90 max-w-2xl"
-              variants={fadeInUp}
-            >
-              {t("hero.subtitle")}
-            </motion.p>
-            <motion.p 
-              className="text-base md:text-lg text-white/80 max-w-3xl mx-auto"
-              variants={fadeInUp}
-            >
-              {t("hero.description")}
-            </motion.p>
-          </motion.div>
+          <motion.p
+            className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-primary"
+            {...fadeInUp}
+          >
+            {siteConfig.name}
+          </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div 
-            className="flex flex-wrap gap-4 justify-center"
-            variants={fadeInUp}
+          <motion.h1
+            className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: prefersReducedMotion ? 0 : 0.08 }}
+          >
+            {t("hero.title")}
+          </motion.h1>
+
+          <motion.p
+            className="max-w-2xl text-lg text-muted-foreground md:text-xl"
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: prefersReducedMotion ? 0 : 0.16 }}
+          >
+            {t("hero.subtitle")}
+          </motion.p>
+
+          <motion.div
+            className="flex flex-wrap gap-3"
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: prefersReducedMotion ? 0 : 0.24 }}
           >
             <Link href="#projects">
-              <Button 
-                size="lg" 
-                variant="secondary"
-                className="text-lg font-semibold shadow-xl hover:shadow-2xl transition-all"
-              >
+              <Button size="lg" className="font-semibold shadow-lg">
                 {t("hero.cta.projects")}
               </Button>
             </Link>
             <Link href="#contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg font-semibold bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-purple-600 shadow-xl transition-all"
-              >
+              <Button size="lg" variant="outline" className="font-semibold">
                 {t("hero.cta.contact")}
               </Button>
             </Link>
-            <Link href="/Douglas Pardim - CV 2025.pdf" target="_blank">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg font-semibold bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-purple-600 shadow-xl transition-all"
-              >
+            <Link
+              href={siteConfig.links.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" variant="ghost" className="font-semibold">
                 <Download className="mr-2 h-5 w-5" />
                 {t("hero.cta.cv")}
               </Button>
             </Link>
           </motion.div>
 
-          {/* Social Links */}
-          <motion.div 
-            className="flex gap-4"
-            variants={fadeInUp}
-          >
-            <Link 
-              href="https://github.com/DWRP" 
-              target="_blank"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white hover:text-purple-600 transition-all hover:scale-110"
-            >
-              <Github className="h-6 w-6" />
-            </Link>
-            <Link 
-              href="https://linkedin.com/in/douglas-pardim" 
-              target="_blank"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white hover:text-purple-600 transition-all hover:scale-110"
-            >
-              <Linkedin className="h-6 w-6" />
-            </Link>
-            <Link 
-              href="mailto:douglas.skd@gmail.com"
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white hover:text-purple-600 transition-all hover:scale-110"
-            >
-              <Mail className="h-6 w-6" />
-            </Link>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div 
-            className="grid grid-cols-3 gap-6 md:gap-12 pt-8"
-            variants={fadeInUp}
-          >
-            {[
-              { value: t("hero.stats.experience"), label: t("hero.stats.experienceLabel") },
-              { value: t("hero.stats.projects"), label: t("hero.stats.projectsLabel") },
-              { value: t("hero.stats.companies"), label: t("hero.stats.companiesLabel") }
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl md:text-4xl font-bold text-white">
-                  {stat.value}
-                </div>
-                <div className="text-sm md:text-base text-white/80">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Scroll indicator - Única seta no final */}
           <motion.div
-            className="mt-12 flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 0.6 }}
+            className="flex gap-3"
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: prefersReducedMotion ? 0 : 0.32 }}
           >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="cursor-pointer"
-              onClick={() => {
-                const aboutSection = document.getElementById('about');
-                aboutSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("contact.socialGithub")}
+              className="rounded-full border border-border/80 bg-background/60 p-3 text-foreground transition hover:border-primary hover:text-primary"
             >
-              <ArrowDown className="h-8 w-8 text-white/70 hover:text-white transition-colors" />
-            </motion.div>
+              <Github className="h-5 w-5" aria-hidden />
+            </Link>
+            <Link
+              href={siteConfig.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("contact.socialLinkedin")}
+              className="rounded-full border border-border/80 bg-background/60 p-3 text-foreground transition hover:border-primary hover:text-primary"
+            >
+              <Linkedin className="h-5 w-5" aria-hidden />
+            </Link>
+            <Link
+              href={`mailto:${siteConfig.email}`}
+              aria-label={t("contact.socialEmail")}
+              className="rounded-full border border-border/80 bg-background/60 p-3 text-foreground transition hover:border-primary hover:text-primary"
+            >
+              <Mail className="h-5 w-5" aria-hidden />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            className="pt-8"
+            initial={prefersReducedMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: prefersReducedMotion ? 0 : 1.1, duration: 0.4 }}
+          >
+            <Link
+              href="#about"
+              aria-label={t("contact.scrollToAbout")}
+              className="inline-flex text-muted-foreground transition hover:text-primary"
+            >
+              <motion.span
+                animate={prefersReducedMotion ? undefined : { y: [0, 8, 0] }}
+                transition={
+                  prefersReducedMotion
+                    ? undefined
+                    : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
+                }
+              >
+                <ArrowDown className="h-7 w-7" aria-hidden />
+              </motion.span>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
     </section>
   );
 };
-

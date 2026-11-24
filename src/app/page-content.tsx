@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Header from "./sections/Header";
 import Main from "./sections/Main";
 import Footer from "./sections/Footer";
@@ -8,92 +8,56 @@ import { useAppStore } from "@/store/app";
 import { Locale } from "@/locales";
 import { useClientLocale } from "@/hooks/useClientLocale";
 import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
-import {
-  generatePersonJsonLd,
-  generateBreadcrumbJsonLd,
-  generateWebsiteJsonLd,
-} from "@/lib/metadata";
 
 export default function PageContent() {
   const [locale, setLocale] = useClientLocale();
   const [messages, setMessages] = useState<AbstractIntlMessages | null>(null);
-  const { theme, setTheme, setActiveMenu, setLocale: setStoreLocale } = useAppStore();
-  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+  const { theme, setActiveMenu, toggleTheme } = useAppStore();
 
-  // Carregar mensagens dinamicamente
   useEffect(() => {
+    let cancelled = false;
     const loadMessages = async () => {
       const msgs = await import(`../../messages/${locale}.json`);
-      setMessages(msgs.default);
+      if (!cancelled) setMessages(msgs.default);
     };
     loadMessages();
+    return () => {
+      cancelled = true;
+    };
   }, [locale]);
 
-  const changeLanguage = useCallback(
-    (newLang: Locale) => {
-      setLocale(newLang);
-      setStoreLocale(newLang); // Sincronizar com Zustand store
-    },
-    [setLocale, setStoreLocale]
-  );
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
 
   useEffect(() => {
-    if (isDarkMode) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    } else {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode, setTheme]);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   useEffect(() => {
     return () => setActiveMenu("");
   }, [setActiveMenu]);
 
-  // Add JSON-LD structured data to the document head
-  useEffect(() => {
-    if (!locale) return;
-
-    // Remove existing JSON-LD scripts to avoid duplicates
-    const existingScripts = document.querySelectorAll(
-      'script[type="application/ld+json"]'
-    );
-    existingScripts.forEach((script) => script.remove());
-
-    // Generate JSON-LD structured data based on current locale
-    const personJsonLd = generatePersonJsonLd(locale);
-    const breadcrumbJsonLd = generateBreadcrumbJsonLd(locale);
-    const websiteJsonLd = generateWebsiteJsonLd(locale);
-
-    // Add Person schema
-    const personScript = document.createElement("script");
-    personScript.type = "application/ld+json";
-    personScript.textContent = JSON.stringify(personJsonLd);
-    document.head.appendChild(personScript);
-
-    // Add Breadcrumb schema
-    const breadcrumbScript = document.createElement("script");
-    breadcrumbScript.type = "application/ld+json";
-    breadcrumbScript.textContent = JSON.stringify(breadcrumbJsonLd);
-    document.head.appendChild(breadcrumbScript);
-
-    // Add Website schema
-    const websiteScript = document.createElement("script");
-    websiteScript.type = "application/ld+json";
-    websiteScript.textContent = JSON.stringify(websiteJsonLd);
-    document.head.appendChild(websiteScript);
-
-    // Update html lang attribute based on locale
-    document.documentElement.lang = locale;
-  }, [locale]);
+  const changeLanguage = useCallback(
+    (newLang: Locale) => {
+      setLocale(newLang);
+    },
+    [setLocale]
+  );
 
   if (!messages) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-purple-500 to-pink-500">
+      <div
+        className="flex min-h-screen items-center justify-center bg-background"
+        role="status"
+        aria-live="polite"
+      >
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white mb-4"></div>
-          <p className="text-white text-lg">Loading...</p>
+          <div className="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-primary" />
+          <p className="text-lg text-muted-foreground">
+            <span className="sr-only">Loading</span>
+            Loading...
+          </p>
         </div>
       </div>
     );
@@ -101,11 +65,18 @@ export default function PageContent() {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <div className={`flex flex-col min-h-screen ${isDarkMode ? "dark" : ""}`}>
+      <div className="flex min-h-screen flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        >
+          Skip to content
+        </a>
         <Header
+          locale={locale}
           changeLanguage={changeLanguage}
-          isDarkMode={isDarkMode}
-          setIsDarkMode={setIsDarkMode}
+          isDarkMode={theme === "dark"}
+          toggleTheme={toggleTheme}
         />
         <Main />
         <Footer />
@@ -113,4 +84,3 @@ export default function PageContent() {
     </NextIntlClientProvider>
   );
 }
-

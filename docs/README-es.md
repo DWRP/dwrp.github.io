@@ -4,8 +4,8 @@
 [![License](https://img.shields.io/badge/licencia-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Author](https://img.shields.io/badge/autor-Douglas%20Pardim-orange)](https://github.com/dwrp)
 [![CI/CD](https://github.com/dwrp/dwrp.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/dwrp/dwrp.github.io/actions)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2-blue)](https://react.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
 
 > 🌍 **Idiomas**: [English](../README.md) | [Português](./README-pt-BR.md) | **Español**
 
@@ -21,13 +21,13 @@ Sitio web personal construido con las más modernas tecnologías web, enfocado e
 - **Totalmente Responsivo**: Experiencia perfecta en desktop, tablet y móvil
 - **Multilingüe**: Soporte completo para Portugués, Inglés, Español y Chino Simplificado
 - **SEO Optimizado**: Meta tags completas, Open Graph, Twitter Cards y JSON-LD structured data
-- **Rendimiento**: Build estático optimizado con Next.js 15 y React 19
+- **Rendimiento**: Build estático optimizado con Next.js 16 y React 19
 - **Temas**: Alternancia entre modo claro y oscuro
 
 ## 🚀 Tecnologías Utilizadas
 
 ### Core
-- **[Next.js 15.5](https://nextjs.org/)** - Framework React con SSG/SSR
+- **[Next.js 16](https://nextjs.org/)** - Framework React con export estático
 - **[React 19.2](https://react.dev/)** - Biblioteca JavaScript para interfaces
 - **[TypeScript](https://www.typescriptlang.org/)** - Superset tipado de JavaScript
 
@@ -87,7 +87,7 @@ dwrp.github.io/
 │   ├── dwrp.svg           # Logo
 │   └── favicon.ico        # Favicon
 ├── src/
-│   ├── app/               # App Router (Next.js 15)
+│   ├── app/               # App Router (Next.js 16)
 │   │   ├── layout.tsx     # Layout raíz con metadata
 │   │   ├── page.tsx       # Página principal
 │   │   ├── page-content.tsx # Contenido con i18n y JSON-LD
@@ -124,44 +124,37 @@ Para más detalles sobre la estructura, vea [project-structure.md](./project-str
 
 ### Prerrequisitos
 
-- Node.js 18+ o superior
-- Yarn o NPM
+- Node.js 22+
+- [pnpm](https://pnpm.io/)
 
 ### Instalación
 
 ```bash
-# Clone el repositorio
 git clone https://github.com/dwrp/dwrp.github.io.git
-
-# Entre en la carpeta
 cd dwrp.github.io
-
-# Instale las dependencias
-yarn install
-# o
-npm install
+pnpm install
 ```
 
 ### Desarrollo
 
 ```bash
-# Inicie el servidor de desarrollo
-yarn dev
-# o
-npm run dev
-
-# Acceda a http://localhost:3000
+pnpm dev
+# http://localhost:3000
 ```
 
 ### Build de Producción
 
 ```bash
-# Genere el build estático
-yarn build
-# o
-npm run build
+pnpm build
+# salida en /out
+```
 
-# El build será generado en la carpeta /out
+### Otros scripts
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm analyze
 ```
 
 ### Deploy

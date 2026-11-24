@@ -21,15 +21,14 @@ CI (`.github/workflows/main.yml`):
 - Trigger: push `main`, `pull_request` ou `workflow_dispatch`
 - pnpm + Node 22
 - `pnpm install --frozen-lockfile`
-- `pnpm lint` antes do build
+- `pnpm lint` e `pnpm typecheck` antes do build
 - `pnpm build`
-- Artifact `./out` → `actions/deploy-pages@v5`
-- Deploy só em `push` / `workflow_dispatch` (PRs rodam lint+build sem publicar)
+- Upload de artifact `./out` e deploy só em `push` / `workflow_dispatch` (PRs rodam lint+typecheck+build sem publicar)
 - Environment `github-pages` apenas no job de deploy
 
 Ambiente:
 
-- Variável de build opcional `NEXT_PUBLIC_API_URL` (vars do repo) — site atual é estático; não assumir API obrigatória
+- Site estático puro; sem variáveis de ambiente obrigatórias
 
 ## Restrições
 

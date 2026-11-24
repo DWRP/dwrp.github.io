@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://dwrp.github.io";
+  const baseUrl = siteConfig.url;
   const currentDate = new Date();
 
   return [
@@ -14,8 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
       alternates: {
         languages: {
-          en: `${baseUrl}`,
-          "pt-BR": `${baseUrl}`,
+          en: baseUrl,
+          "pt-BR": baseUrl,
+          es: baseUrl,
+          "zh-CN": baseUrl,
         },
       },
     },

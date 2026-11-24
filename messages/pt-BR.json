@@ -94,7 +94,8 @@
                 }
             },
             "viewMore": "Ver mais",
-            "viewLess": "Ver menos"
+            "viewLess": "Ver menos",
+            "achievementsTitle": "Principais conquistas"
         },
         "skills": {
             "title": "Habilidades e Tecnologias",
@@ -161,18 +162,13 @@
         "projects": {
             "title": "Projetos em Destaque",
             "subtitle": "Alguns trabalhos dos quais tenho orgulho",
-            "filter": {
-                "all": "Todos",
-                "web": "Web",
-                "mobile": "Mobile",
-                "opensource": "Open Source"
-            },
             "projects-infos": {
                 "app-ideas": {
                     "name": "APP IDEAS",
                     "type": "Open Source",
                     "desc": "Coleção de ideias de aplicações para desenvolvedores praticarem suas habilidades. Implementações de diversos conceitos e padrões de desenvolvimento.",
                     "link": "https://dwrp.github.io/app-ideas/",
+                    "github": "https://github.com/dwrp/app-ideas",
                     "tags": ["React", "JavaScript", "Learning"]
                 },
                 "ominix": {
@@ -180,25 +176,16 @@
                     "type": "Open Source",
                     "desc": "Framework backend leve construído sobre Express.js. Pacote NPM para facilitar a criação de APIs RESTful com Node.js.",
                     "link": "https://www.npmjs.com/package/ominix",
+                    "github": "https://github.com/dwrp/ominix",
                     "tags": ["Node.js", "Express", "NPM"]
                 },
-                "ecommerce": {
-                    "name": "E-commerce Platform",
+                "portfolio": {
+                    "name": "Portfólio Pessoal",
                     "type": "Web",
-                    "desc": "Plataforma completa de comércio eletrônico com carrinho, pagamentos e painel admin. Construída com Next.js e Node.js.",
-                    "tags": ["Next.js", "Node.js", "PostgreSQL"]
-                },
-                "taskmanager": {
-                    "name": "Task Manager Pro",
-                    "type": "Web",
-                    "desc": "Aplicação de gestão de tarefas em tempo real com colaboração em equipe. Implementa WebSockets para atualizações live.",
-                    "tags": ["React", "Socket.io", "MongoDB"]
-                },
-                "deliveryapp": {
-                    "name": "Delivery App",
-                    "type": "Mobile",
-                    "desc": "Aplicativo de delivery com rastreamento em tempo real, integração com mapas e sistema de pagamentos.",
-                    "tags": ["React Native", "Firebase", "Maps API"]
+                    "desc": "Este site — portfólio multilíngue estático com Next.js, React e Tailwind CSS, publicado no GitHub Pages.",
+                    "link": "https://dwrp.github.io/",
+                    "github": "https://github.com/dwrp/dwrp.github.io",
+                    "tags": ["Next.js", "TypeScript", "Tailwind CSS"]
                 }
             },
             "cta": "Ver Projeto",
@@ -210,8 +197,12 @@
             "subtitle": "Estou sempre aberto a novos desafios e oportunidades",
             "description": "Se você busca um desenvolvedor Fullstack apaixonado por soluções inovadoras, estou pronto para colaborar e contribuir com o sucesso do seu projeto. Vamos criar algo incrível juntos!",
             "info": "Onde me encontrar",
-            "location": "📍 Serra/ES, Brasil",
-            "phone": "📱 +55 (27) 99695-0412",
+            "location": "Serra/ES, Brasil",
+            "phone": "+55 (27) 99695-0412",
+            "socialGithub": "Perfil no GitHub",
+            "socialLinkedin": "Perfil no LinkedIn",
+            "socialEmail": "Enviar e-mail",
+            "scrollToAbout": "Ir para a seção sobre",
             "cta": {
                 "email": "Enviar Email",
                 "linkedin": "LinkedIn",
@@ -222,7 +213,7 @@
             "readyDescription": "Entre em contato comigo através do email ou redes sociais. Vamos conversar sobre como posso ajudar no seu projeto!"
         },
         "footer": {
-            "rights": "© 2025 Douglas Pardim. Todos os direitos reservados.",
+            "rights": "© 2026 Douglas Pardim. Todos os direitos reservados.",
             "built": "Desenvolvido com",
             "and": "e",
             "madeWith": "Next.js, React & Tailwind CSS"

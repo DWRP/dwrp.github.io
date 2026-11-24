@@ -1,11 +1,11 @@
 # dwrp.github.io
 
 [![Preview](https://img.shields.io/badge/preview-live-brightgreen)](https://dwrp.github.io)
-[![License](https://img.shields.io/badge/licença-MIT-blue)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/licença-MIT-blue)](../LICENSE)
 [![Author](https://img.shields.io/badge/autor-Douglas%20Pardim-orange)](https://github.com/dwrp)
 [![CI/CD](https://github.com/dwrp/dwrp.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/dwrp/dwrp.github.io/actions)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2-blue)](https://react.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue)](https://react.dev/)
 
 > 🌍 **Idiomas**: [English](../README.md) | **Português** | [Español](./README-es.md)
 
@@ -21,18 +21,18 @@ Site pessoal construído com as mais modernas tecnologias web, focado em perform
 - **Totalmente Responsivo**: Experiência perfeita em desktop, tablet e mobile
 - **Multilíngue**: Suporte completo para Português, Inglês, Espanhol e Chinês Simplificado
 - **SEO Otimizado**: Meta tags completas, Open Graph, Twitter Cards e JSON-LD structured data
-- **Performance**: Build estático otimizado com Next.js 15 e React 19
+- **Performance**: Build estático otimizado com Next.js 16 e React 19
 - **Temas**: Alternância entre modo claro e escuro
 
 ## 🚀 Tecnologias Utilizadas
 
 ### Core
-- **[Next.js 15.5](https://nextjs.org/)** - Framework React com SSG/SSR
-- **[React 19.2](https://react.dev/)** - Biblioteca JavaScript para interfaces
+- **[Next.js 16](https://nextjs.org/)** - Framework React com export estático
+- **[React 19](https://react.dev/)** - Biblioteca JavaScript para interfaces
 - **[TypeScript](https://www.typescriptlang.org/)** - Superset tipado do JavaScript
 
 ### UI/UX
-- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utilitário
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Framework CSS utilitário
 - **[Shadcn UI](https://ui.shadcn.com/)** - Componentes UI reutilizáveis
 - **[Framer Motion](https://www.framer.com/motion/)** - Biblioteca de animações
 - **[Lucide Icons](https://lucide.dev/)** - Ícones modernos
@@ -43,7 +43,7 @@ Site pessoal construído com as mais modernas tecnologias web, focado em perform
 
 ### DevOps
 - **[GitHub Pages](https://pages.github.com/)** - Hospedagem estática
-- **[GitHub Actions](https://github.com/features/actions)** - CI/CD automatizado
+- **[GitHub Actions](https://github.com/features/actions)** - CI/CD com pnpm
 
 ## 📋 Funcionalidades
 
@@ -87,7 +87,7 @@ dwrp.github.io/
 │   ├── dwrp.svg           # Logo
 │   └── favicon.ico        # Favicon
 ├── src/
-│   ├── app/               # App Router (Next.js 15)
+│   ├── app/               # App Router (Next.js 16)
 │   │   ├── layout.tsx     # Layout raiz com metadata
 │   │   ├── page.tsx       # Página principal
 │   │   ├── page-content.tsx # Conteúdo com i18n e JSON-LD
@@ -124,44 +124,37 @@ Para mais detalhes sobre a estrutura, veja [project-structure.md](./project-stru
 
 ### Pré-requisitos
 
-- Node.js 18+ ou superior
-- Yarn ou NPM
+- Node.js 22+
+- [pnpm](https://pnpm.io/)
 
 ### Instalação
 
 ```bash
-# Clone o repositório
 git clone https://github.com/dwrp/dwrp.github.io.git
-
-# Entre na pasta
 cd dwrp.github.io
-
-# Instale as dependências
-yarn install
-# ou
-npm install
+pnpm install
 ```
 
 ### Desenvolvimento
 
 ```bash
-# Inicie o servidor de desenvolvimento
-yarn dev
-# ou
-npm run dev
-
-# Acesse http://localhost:3000
+pnpm dev
+# http://localhost:3000
 ```
 
 ### Build de Produção
 
 ```bash
-# Gere a build estática
-yarn build
-# ou
-npm run build
+pnpm build
+# saída em /out
+```
 
-# A build será gerada na pasta /out
+### Outros scripts
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm analyze
 ```
 
 ### Deploy

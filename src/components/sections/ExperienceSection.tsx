@@ -5,139 +5,131 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Briefcase, MapPin, Calendar, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import {
+  Briefcase,
+  MapPin,
+  Calendar,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
+import { useId, useState } from "react";
+import { SectionHeader } from "@/components/sections/SectionHeader";
+import { getMotionProps } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export const ExperienceSection = () => {
   const t = useTranslations("Index");
   const [expandedJobs, setExpandedJobs] = useState<string[]>(["job1"]);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const regionIdPrefix = useId();
 
   const toggleJob = (jobId: string) => {
-    setExpandedJobs(prev =>
-      prev.includes(jobId)
-        ? prev.filter(id => id !== jobId)
-        : [...prev, jobId]
+    setExpandedJobs((prev) =>
+      prev.includes(jobId) ? prev.filter((id) => id !== jobId) : [...prev, jobId]
     );
   };
 
   const jobs = ["job1", "job2", "job3"];
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-    viewport: { once: true }
-  };
-
   return (
     <section
       id="experience"
-      className="w-full py-20 md:py-28 lg:py-36 bg-muted/50"
+      className="w-full bg-muted/50 py-20 md:py-28 lg:py-36"
     >
       <div className="container px-4 md:px-6">
-        <motion.div 
-          className="text-center mb-12 md:mb-16"
-          {...fadeInUp}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            {t("experience.title")}
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t("experience.subtitle")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          title={t("experience.title")}
+          subtitle={t("experience.subtitle")}
+        />
 
-        <div className="max-w-4xl mx-auto relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-purple-500 via-purple-600 to-pink-500 hidden md:block" />
+        <div className="relative mx-auto max-w-4xl">
+          <div className="absolute top-0 bottom-0 left-8 hidden w-0.5 bg-linear-to-b from-primary via-primary/70 to-accent md:block" />
 
           <div className="space-y-8">
             {jobs.map((jobId, index) => {
               const isExpanded = expandedJobs.includes(jobId);
-              const achievements = t.raw(`experience.jobs.${jobId}.achievements`) as string[];
+              const achievements = t.raw(
+                `experience.jobs.${jobId}.achievements`
+              ) as string[];
+              const regionId = `${regionIdPrefix}-${jobId}`;
 
               return (
                 <motion.div
                   key={jobId}
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  {...getMotionProps(prefersReducedMotion)}
+                  transition={{
+                    duration: prefersReducedMotion ? 0.01 : 0.6,
+                    delay: prefersReducedMotion ? 0 : index * 0.08,
+                  }}
                   className="relative"
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute left-6 top-8 w-5 h-5 rounded-full bg-linear-to-r from-purple-500 to-pink-500 border-4 border-background shadow-lg hidden md:block z-10" />
+                  <div className="absolute top-8 left-6 z-10 hidden h-5 w-5 rounded-full border-4 border-background bg-primary shadow-lg md:block" />
 
-                  <Card className="ml-0 md:ml-20 card-hover border-purple-500/20 shadow-lg">
+                  <Card className="ml-0 border-primary/15 shadow-lg md:ml-20">
                     <CardContent className="p-6">
-                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+                      <div className="mb-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                         <div className="flex-1">
-                          <h3 className="text-xl md:text-2xl font-bold mb-2">
+                          <h3 className="font-display mb-2 text-xl font-bold md:text-2xl">
                             {t(`experience.jobs.${jobId}.position`)}
                           </h3>
-                          <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold mb-2">
+                          <div className="mb-2 flex items-center gap-2 font-semibold text-primary">
                             <Briefcase className="h-4 w-4" />
                             <span>{t(`experience.jobs.${jobId}.company`)}</span>
                           </div>
                         </div>
                         <div className="flex flex-col gap-2">
                           <Badge variant="secondary" className="w-fit">
-                            <Calendar className="h-3 w-3 mr-1" />
+                            <Calendar className="mr-1 h-3 w-3" />
                             {t(`experience.jobs.${jobId}.period`)}
                           </Badge>
                           <Badge variant="outline" className="w-fit">
-                            <MapPin className="h-3 w-3 mr-1" />
+                            <MapPin className="mr-1 h-3 w-3" />
                             {t(`experience.jobs.${jobId}.location`)}
                           </Badge>
                         </div>
                       </div>
 
-                      <p className="text-muted-foreground mb-4">
+                      <p className="mb-4 text-muted-foreground">
                         {t(`experience.jobs.${jobId}.description`)}
                       </p>
 
-                      {/* Achievements */}
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">
-                            Principais Conquistas:
-                          </h4>
-                          <ul className="space-y-2">
-                            {achievements.map((achievement, i) => (
-                              <motion.li
-                                key={i}
-                                className="flex items-start gap-2 text-sm text-muted-foreground"
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: i * 0.1 }}
-                              >
-                                <span className="text-purple-500 mt-1">•</span>
-                                <span>{achievement}</span>
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
+                      <div id={regionId} hidden={!isExpanded}>
+                        {isExpanded && (
+                          <>
+                            <h4 className="mb-3 text-sm font-semibold tracking-wide uppercase">
+                              {t("experience.achievementsTitle")}
+                            </h4>
+                            <ul className="space-y-2">
+                              {achievements.map((achievement) => (
+                                <li
+                                  key={achievement}
+                                  className="flex items-start gap-2 text-sm text-muted-foreground"
+                                >
+                                  <span className="mt-1 text-primary">•</span>
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        )}
+                      </div>
 
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => toggleJob(jobId)}
-                        className="mt-4 text-purple-600 dark:text-purple-400"
+                        className="mt-4 text-primary"
+                        aria-expanded={isExpanded}
+                        aria-controls={regionId}
                       >
                         {isExpanded ? (
                           <>
-                            <ChevronUp className="h-4 w-4 mr-1" />
+                            <ChevronUp className="mr-1 h-4 w-4" />
                             {t("experience.viewLess")}
                           </>
                         ) : (
                           <>
-                            <ChevronDown className="h-4 w-4 mr-1" />
+                            <ChevronDown className="mr-1 h-4 w-4" />
                             {t("experience.viewMore")}
                           </>
                         )}
@@ -153,4 +145,3 @@ export const ExperienceSection = () => {
     </section>
   );
 };
-

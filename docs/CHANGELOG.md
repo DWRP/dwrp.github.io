@@ -1,5 +1,22 @@
 # Changelog - Modernização do Site Pessoal
 
+## 2026-11-24 - Auditoria de melhorias
+
+### Corretude
+- Locale unificado via `useClientLocale` (Header deixa de usar `lang` do Zustand)
+- Tema aplicado no `<html>` com rehidratação e script anti-flash
+- String hardcoded de conquistas internacionalizada; links GitHub de projetos separados
+- `LICENSE` MIT adicionada; placeholder Twitter removido do JSON-LD
+
+### A11y / SEO / DX
+- Menu mobile com `aria-*`, Escape e overlay acessível; `prefers-reduced-motion`
+- JSON-LD no HTML estático; sitemap com `es` e `zh-CN`
+- `siteConfig`, `SectionHeader`, limpeza de deps mortas
+- Docs/CI alinhados a pnpm + Next 16; script `typecheck`
+
+### Marca
+- Paleta teal/âmbar, fontes Outfit + Source Sans 3, hero enxuto, projetos reais
+
 ## 2025-01-10 - Correção de Internacionalização
 
 ### 🔧 Problemas Críticos Corrigidos
