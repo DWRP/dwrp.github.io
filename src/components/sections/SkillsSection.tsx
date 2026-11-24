@@ -1,13 +1,9 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { getTranslations } from "next-intl/server";
 import { Code2, Database, Smartphone, Cloud, Wrench } from "lucide-react";
 import { SectionHeader } from "@/components/sections/SectionHeader";
-import { getMotionProps } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { FadeInView } from "@/components/motion/FadeInView";
 
 const skillCategories = [
   {
@@ -85,9 +81,8 @@ const skillCategories = [
   },
 ] as const;
 
-export const SkillsSection = () => {
-  const t = useTranslations("Index");
-  const prefersReducedMotion = usePrefersReducedMotion();
+export async function SkillsSection() {
+  const t = await getTranslations("Index");
 
   return (
     <section id="skills" className="w-full py-20 md:py-28 lg:py-36">
@@ -98,15 +93,8 @@ export const SkillsSection = () => {
           {skillCategories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <motion.div
-                key={category.id}
-                {...getMotionProps(prefersReducedMotion)}
-                transition={{
-                  duration: prefersReducedMotion ? 0.01 : 0.6,
-                  delay: prefersReducedMotion ? 0 : index * 0.08,
-                }}
-              >
-                <Card className="h-full border-primary/15 shadow-lg card-hover">
+              <FadeInView key={category.id} delay={index * 0.08}>
+                <Card className="card-hover h-full border-primary/15 shadow-lg">
                   <CardContent className="p-6">
                     <div className="mb-4 flex items-center gap-3">
                       <div className="rounded-lg bg-primary/10 p-3 text-primary">
@@ -130,11 +118,11 @@ export const SkillsSection = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </FadeInView>
             );
           })}
         </div>
       </div>
     </section>
   );
-};
+}

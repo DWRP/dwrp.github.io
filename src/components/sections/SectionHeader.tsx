@@ -1,8 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { getMotionProps } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { FadeInView } from "@/components/motion/FadeInView";
 
 type SectionHeaderProps = {
   title: string;
@@ -15,24 +11,21 @@ export function SectionHeader({
   subtitle,
   description,
 }: SectionHeaderProps) {
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const motionProps = getMotionProps(prefersReducedMotion);
-
   return (
-    <motion.div className="text-center mb-12 md:mb-16" {...motionProps}>
-      <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+    <FadeInView className="mb-12 text-center md:mb-16">
+      <h2 className="font-display mb-4 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl">
           {subtitle}
         </p>
       )}
       {description && (
-        <p className="text-base text-muted-foreground max-w-2xl mx-auto mt-2">
+        <p className="mx-auto mt-2 max-w-2xl text-base text-muted-foreground">
           {description}
         </p>
       )}
-    </motion.div>
+    </FadeInView>
   );
 }

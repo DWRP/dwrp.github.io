@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
@@ -47,6 +47,10 @@ jobs:
         run: pnpm typecheck
       - name: Build with Next.js
         run: pnpm build
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run Playwright E2E
+        run: pnpm test:e2e
       - name: Save Next.js cache
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/cache/save@v4

@@ -1,5 +1,3 @@
-"use client";
-
 import type { HTMLMotionProps, Transition } from "framer-motion";
 
 export const fadeInUpTransition: Transition = {

@@ -1,18 +1,14 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { getTranslations } from "next-intl/server";
 import { GraduationCap, Award, Calendar } from "lucide-react";
 import { SectionHeader } from "@/components/sections/SectionHeader";
-import { getMotionProps } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { FadeInView } from "@/components/motion/FadeInView";
 
-export const EducationSection = () => {
-  const t = useTranslations("Index");
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const certifications = ["cert1", "cert2", "cert3", "cert4", "cert5"];
+const CERT_IDS = ["cert1", "cert2", "cert3", "cert4", "cert5"] as const;
+
+export async function EducationSection() {
+  const t = await getTranslations("Index");
 
   return (
     <section
@@ -26,8 +22,8 @@ export const EducationSection = () => {
         />
 
         <div className="mx-auto max-w-5xl space-y-8">
-          <motion.div {...getMotionProps(prefersReducedMotion)}>
-            <Card className="overflow-hidden border-primary/15 shadow-lg card-hover">
+          <FadeInView>
+            <Card className="card-hover overflow-hidden border-primary/15 shadow-lg">
               <div className="h-1.5 gradient-primary" />
               <CardContent className="p-6 md:p-8">
                 <div className="flex flex-col items-start gap-6 md:flex-row">
@@ -54,9 +50,9 @@ export const EducationSection = () => {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </FadeInView>
 
-          <motion.div className="space-y-4" {...getMotionProps(prefersReducedMotion)}>
+          <FadeInView className="space-y-4">
             <div className="mb-6 flex items-center gap-2">
               <Award className="h-6 w-6 text-primary" />
               <h3 className="font-display text-2xl font-bold">
@@ -65,16 +61,9 @@ export const EducationSection = () => {
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {certifications.map((certId, index) => (
-                <motion.div
-                  key={certId}
-                  {...getMotionProps(prefersReducedMotion)}
-                  transition={{
-                    duration: prefersReducedMotion ? 0.01 : 0.5,
-                    delay: prefersReducedMotion ? 0 : index * 0.06,
-                  }}
-                >
-                  <Card className="h-full border-primary/15 shadow-md card-hover">
+              {CERT_IDS.map((certId, index) => (
+                <FadeInView key={certId} delay={index * 0.06}>
+                  <Card className="card-hover h-full border-primary/15 shadow-md">
                     <CardContent className="p-6">
                       <div className="mb-3 flex items-start gap-3">
                         <div className="rounded-lg bg-primary/10 p-2 text-primary">
@@ -92,12 +81,12 @@ export const EducationSection = () => {
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </FadeInView>
               ))}
             </div>
-          </motion.div>
+          </FadeInView>
         </div>
       </div>
     </section>
   );
-};
+}

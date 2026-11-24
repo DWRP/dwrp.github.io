@@ -1,5 +1,17 @@
 # Changelog - Modernização do Site Pessoal
 
+## 2026-11-24 - Refatoração Next 16 + next-intl + Playwright
+
+### Arquitetura
+- next-intl v4 com rotas `/[locale]/`, `generateStaticParams` e SSG por idioma (sem middleware)
+- Sections como Server Components; client islands para Header, motion, scroll-spy e accordion
+- Zustand removido; `ThemeProvider` + `ActiveNavProvider`
+- SEO/hreflang/sitemap por locale; redirect estático `/` → `/en/` via `postexport.mjs`
+
+### Qualidade
+- Playwright E2E (i18n, responsivo, performance) no CI
+- Docs e estrutura alinhadas ao novo layout
+
 ## 2026-11-24 - Auditoria de melhorias
 
 ### Corretude

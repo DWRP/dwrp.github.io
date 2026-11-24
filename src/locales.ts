@@ -1,5 +1,7 @@
-export type Locale = (typeof locales)[number];
+import { routing, type AppLocale } from "@/i18n/routing";
 
-export const locales = ["en", "pt-BR", "es", "zh-CN"] as const;
+export type Locale = AppLocale;
 
-export const defaultLocale = locales[0];
+export const locales = routing.locales;
+
+export const defaultLocale = routing.defaultLocale;

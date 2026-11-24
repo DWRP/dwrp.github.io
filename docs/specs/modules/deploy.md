@@ -22,8 +22,9 @@ CI (`.github/workflows/main.yml`):
 - pnpm + Node 22
 - `pnpm install --frozen-lockfile`
 - `pnpm lint` e `pnpm typecheck` antes do build
-- `pnpm build`
-- Upload de artifact `./out` e deploy só em `push` / `workflow_dispatch` (PRs rodam lint+typecheck+build sem publicar)
+- `pnpm build` (inclui `postexport.mjs` para redirect `/` → `/en/`)
+- Playwright E2E (`pnpm test:e2e`) após o build
+- Upload de artifact `./out` e deploy só em `push` / `workflow_dispatch` (PRs rodam lint+typecheck+build+e2e sem publicar)
 - Environment `github-pages` apenas no job de deploy
 
 Ambiente:

@@ -1,17 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useAppStore } from "@/store/app";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { ExperienceSection } from "@/components/sections/ExperienceSection";
-import { SkillsSection } from "@/components/sections/SkillsSection";
-import { EducationSection } from "@/components/sections/EducationSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { useActiveNav } from "@/components/providers/ActiveNavProvider";
 
-const Main = () => {
-  const { setActiveMenu } = useAppStore();
+export function MainShell({ children }: { children: React.ReactNode }) {
+  const { setActiveMenu } = useActiveNav();
   const activeRef = useRef("");
 
   useEffect(() => {
@@ -47,19 +40,13 @@ const Main = () => {
       const target = document.querySelector(location.hash);
       target?.scrollIntoView({ behavior: "smooth" });
     }
-  }, []);
+
+    return () => setActiveMenu("");
+  }, [setActiveMenu]);
 
   return (
     <main id="main-content" className="mt-14 flex-1">
-      <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <EducationSection />
-      <ProjectsSection />
-      <ContactSection />
+      {children}
     </main>
   );
-};
-
-export default Main;
+}

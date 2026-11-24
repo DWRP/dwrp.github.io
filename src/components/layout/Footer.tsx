@@ -1,9 +1,8 @@
-import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Heart } from "lucide-react";
 
-const Footer = () => {
-  const t = useTranslations("Index");
+export default async function Footer() {
+  const t = await getTranslations("Index");
 
   return (
     <footer className="w-full border-t bg-muted/50 px-4 py-8 md:px-6">
@@ -18,29 +17,27 @@ const Footer = () => {
             </p>
           </div>
           <nav className="flex gap-4" aria-label="Footer">
-            <Link
+            <a
               href="#about"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {t("nav.about")}
-            </Link>
-            <Link
+            </a>
+            <a
               href="#projects"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {t("nav.projects")}
-            </Link>
-            <Link
+            </a>
+            <a
               href="#contact"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {t("nav.contact")}
-            </Link>
+            </a>
           </nav>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

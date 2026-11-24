@@ -38,12 +38,13 @@ Site pessoal construído com as mais modernas tecnologias web, focado em perform
 - **[Lucide Icons](https://lucide.dev/)** - Ícones modernos
 
 ### Internacionalização
-- **[next-intl](https://next-intl-docs.vercel.app/)** - i18n para Next.js
+- **[next-intl](https://next-intl.dev/)** - i18n App Router com SSG por locale (`/[locale]/`)
 - Suporte nativo para 4 idiomas (pt-BR, en, es, zh-CN)
 
 ### DevOps
 - **[GitHub Pages](https://pages.github.com/)** - Hospedagem estática
 - **[GitHub Actions](https://github.com/features/actions)** - CI/CD com pnpm
+- **[Playwright](https://playwright.dev/)** - E2E (i18n, responsivo, desempenho)
 
 ## 📋 Funcionalidades
 
@@ -61,64 +62,19 @@ Site pessoal construído com as mais modernas tecnologias web, focado em perform
 
 - ✅ **Menu Fixo**: Navegação persistente com indicador de seção ativa
 - ✅ **Menu Responsivo**: Drawer lateral em dispositivos móveis
-- ✅ **Troca de Idiomas**: Seletor de idioma com persistência no localStorage
+- ✅ **Troca de Idiomas**: URLs por locale (`/en/`, `/pt-BR/`, …) com HTML estático
 - ✅ **Modo Escuro/Claro**: Sistema de temas com preferência do usuário
 - ✅ **Animações Suaves**: Transições e efeitos com Framer Motion
-- ✅ **SEO Completo**: Meta tags, Open Graph, Twitter Cards, JSON-LD
+- ✅ **SEO Completo**: Meta tags, Open Graph, Twitter Cards, JSON-LD e hreflang por locale
 - ✅ **Sitemap Dinâmico**: Geração automática para melhor indexação
 - ✅ **Robots.txt**: Configuração otimizada para crawlers
+- ✅ **E2E Playwright**: i18n, responsividade e budgets de desempenho no CI
 
 ## 🏗️ Estrutura do Projeto
 
-```
-dwrp.github.io/
-├── docs/                    # Documentação do projeto
-│   ├── README-pt-BR.md     # Documentação em português
-│   ├── README-es.md        # Documentação em espanhol
-│   └── project-structure.md # Estrutura detalhada do projeto
-├── messages/               # Arquivos de tradução (i18n)
-│   ├── en.json            # Inglês
-│   ├── pt-BR.json         # Português do Brasil
-│   ├── es.json            # Espanhol
-│   └── zh-CN.json         # Chinês Simplificado
-├── public/                # Arquivos estáticos
-│   ├── cover.jpeg         # Imagem de preview (Open Graph)
-│   ├── cover2.jpeg        # Imagem alternativa
-│   ├── dwrp.svg           # Logo
-│   └── favicon.ico        # Favicon
-├── src/
-│   ├── app/               # App Router (Next.js 16)
-│   │   ├── layout.tsx     # Layout raiz com metadata
-│   │   ├── page.tsx       # Página principal
-│   │   ├── page-content.tsx # Conteúdo com i18n e JSON-LD
-│   │   ├── robots.ts      # Gerador de robots.txt
-│   │   ├── sitemap.ts     # Gerador de sitemap.xml
-│   │   └── sections/      # Seções principais (Header, Main, Footer)
-│   ├── components/
-│   │   ├── sections/      # Componentes de seção
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── AboutSection.tsx
-│   │   │   ├── ExperienceSection.tsx
-│   │   │   ├── SkillsSection.tsx
-│   │   │   ├── EducationSection.tsx
-│   │   │   ├── ProjectsSection.tsx
-│   │   │   └── ContactSection.tsx
-│   │   └── ui/            # Componentes Shadcn UI
-│   ├── hooks/
-│   │   └── useClientLocale.ts # Hook de gerenciamento de idioma
-│   ├── lib/
-│   │   ├── metadata.ts    # Utilitários de SEO e JSON-LD
-│   │   └── utils.ts       # Utilitários gerais
-│   ├── store/             # Estado global (Zustand)
-│   ├── styles/            # Estilos globais
-│   └── locales.ts         # Configuração de idiomas
-├── CHANGELOG.md           # Histórico de mudanças
-├── package.json
-└── README.md              # Documentação principal
+Rotas localizadas em `src/app/[locale]/`, i18n em `src/i18n/`, seções em `src/components/sections/`, e testes em `e2e/`.
 
-```
-
-Para mais detalhes sobre a estrutura, veja [project-structure.md](./project-structure.md).
+Para o mapa completo, veja [project-structure.md](./project-structure.md).
 
 ## 🔧 Como Usar
 
@@ -155,6 +111,7 @@ pnpm build
 pnpm lint
 pnpm typecheck
 pnpm analyze
+pnpm test:e2e
 ```
 
 ### Deploy

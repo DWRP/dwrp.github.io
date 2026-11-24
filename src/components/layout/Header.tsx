@@ -9,13 +9,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Locale, locales } from "@/locales";
+import { type Locale, locales } from "@/locales";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
-import { useAppStore } from "@/store/app";
+import { useActiveNav } from "@/components/providers/ActiveNavProvider";
+import { useTheme } from "@/components/providers/ThemeProvider";
 import { siteConfig } from "@/lib/siteConfig";
+
 
 const NAV_LINKS = [
   "about",
@@ -26,19 +27,11 @@ const NAV_LINKS = [
   "contact",
 ] as const;
 
-const Header = ({
-  locale,
-  isDarkMode,
-  toggleTheme,
-  changeLanguage,
-}: {
-  locale: Locale;
-  isDarkMode: boolean;
-  toggleTheme: () => void;
-  changeLanguage: (lang: Locale) => void;
-}) => {
+export default function Header() {
   const t = useTranslations("Index");
-  const { activeMenu, setActiveMenu } = useAppStore();
+  const locale = useLocale() as Locale;
+  const { activeMenu, setActiveMenu } = useActiveNav();
+  const { isDarkMode, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuId = useId();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -70,6 +63,14 @@ const Header = ({
 
   const updateActiveLink = (link?: string) => setActiveMenu(link || "");
 
+  // Hard navigation keeps locale switching reliable on static hosts (GitHub Pages).
+  const changeLanguage = (nextLocale: Locale) => {
+    if (nextLocale === locale) return;
+    const hash = window.location.hash;
+    const nextUrl = new URL(`/${nextLocale}/${hash}`, window.location.origin);
+    window.location.assign(nextUrl.href);
+  };
+
   return (
     <>
       {isMenuOpen && (
@@ -82,33 +83,30 @@ const Header = ({
       )}
 
       <header className="fixed z-50 flex h-14 w-full items-center justify-between border-b border-border/80 bg-background/90 px-4 backdrop-blur-md lg:px-6">
-        <Link
+        <a
           className="flex items-center"
           href="#home"
           onClick={() => updateActiveLink()}
         >
-          <Image
-            src="/dwrp.svg"
-            alt=""
-            width={40}
-            height={40}
-            aria-hidden
-          />
+          <Image src="/dwrp.svg" alt="" width={40} height={40} aria-hidden />
           <span className="font-display ml-2 font-bold tracking-tight">
             {siteConfig.name}
           </span>
-        </Link>
+        </a>
 
-        <nav className="ml-auto hidden gap-4 sm:gap-6 md:flex" aria-label="Primary">
+        <nav
+          className="ml-auto hidden gap-4 sm:gap-6 md:flex"
+          aria-label="Primary"
+        >
           {NAV_LINKS.map((link) => (
-            <Link
+            <a
               key={link}
               className={`text-sm font-medium underline-offset-4 hover:underline ${checkActiveLink(link)}`}
               href={`#${link}`}
               onClick={() => updateActiveLink(link)}
             >
               {t(`nav.${link}`)}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -117,7 +115,10 @@ const Header = ({
             value={locale}
             onValueChange={(value) => changeLanguage(value as Locale)}
           >
-            <SelectTrigger className="w-[100px] md:w-[120px]" aria-label="Language">
+            <SelectTrigger
+              className="w-[100px] md:w-[120px]"
+              aria-label="Language"
+            >
               <SelectValue placeholder="Language" />
             </SelectTrigger>
             <SelectContent>
@@ -152,7 +153,11 @@ const Header = ({
             aria-controls={menuId}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
         </div>
 
@@ -175,9 +180,12 @@ const Header = ({
           >
             <X className="h-5 w-5" />
           </button>
-          <nav className="mt-8 flex flex-col items-start space-y-4 p-4" aria-label="Mobile">
+          <nav
+            className="mt-8 flex flex-col items-start space-y-4 p-4"
+            aria-label="Mobile"
+          >
             {NAV_LINKS.map((link) => (
-              <Link
+              <a
                 key={link}
                 className={`text-sm font-medium underline-offset-4 hover:underline ${checkActiveLink(link)}`}
                 href={`#${link}`}
@@ -187,13 +195,11 @@ const Header = ({
                 }}
               >
                 {t(`nav.${link}`)}
-              </Link>
+              </a>
             ))}
           </nav>
         </div>
       </header>
     </>
   );
-};
-
-export default Header;
+}

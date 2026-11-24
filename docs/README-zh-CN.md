@@ -38,12 +38,13 @@
 - **[Lucide Icons](https://lucide.dev/)** - 现代图标库
 
 ### 国际化
-- **[next-intl](https://next-intl-docs.vercel.app/)** - Next.js 国际化
+- **[next-intl](https://next-intl.dev/)** - App Router i18n，按 locale SSG（`/[locale]/`）
 - 原生支持 4 种语言（pt-BR、en、es、zh-CN）
 
 ### DevOps
 - **[GitHub Pages](https://pages.github.com/)** - 静态站点托管
 - **[GitHub Actions](https://github.com/features/actions)** - 自动化 CI/CD
+- **[Playwright](https://playwright.dev/)** - E2E（国际化、响应式、性能）
 
 ## 📋 功能
 
@@ -61,58 +62,19 @@
 
 - ✅ **固定导航**: 带有活动部分指示器的持久菜单
 - ✅ **响应式菜单**: 移动设备的侧边导航
-- ✅ **语言切换**: 支持 4 种语言，在 localStorage 中持久化
+- ✅ **语言切换**: 按 locale 的 URL（`/en/`、`/pt-BR/` 等）与静态 HTML
 - ✅ **主题切换**: 明暗模式，用户偏好设置
 - ✅ **流畅动画**: 使用 Framer Motion 的过渡和效果
-- ✅ **完整 SEO**: Meta 标签、Open Graph、Twitter Cards、JSON-LD
+- ✅ **完整 SEO**: Meta 标签、Open Graph、Twitter Cards、JSON-LD 与 hreflang
 - ✅ **动态站点地图**: 自动生成以实现更好的索引
 - ✅ **优化的 Robots.txt**: 爬虫配置
+- ✅ **Playwright E2E**: 国际化、响应式与性能预算（CI）
 
 ## 🏗️ 项目结构
 
-```
-dwrp.github.io/
-├── docs/                    # 项目文档
-│   ├── README-pt-BR.md     # 葡萄牙语文档
-│   ├── README-es.md        # 西班牙语文档
-│   ├── README-zh-CN.md     # 中文文档
-│   └── project-structure.md # 详细项目结构
-├── messages/               # i18n 翻译文件
-│   ├── en.json            # 英语
-│   ├── pt-BR.json         # 巴西葡萄牙语
-│   ├── es.json            # 西班牙语
-│   └── zh-CN.json         # 简体中文
-├── public/                # 静态资源
-│   ├── cover.jpeg         # 预览图片（Open Graph）
-│   ├── cover2.jpeg        # 备用图片
-│   ├── dwrp.svg           # Logo
-│   └── favicon.ico        # Favicon
-├── src/
-│   ├── app/               # App Router（Next.js 16）
-│   │   ├── layout.tsx     # 带 metadata 的根布局
-│   │   ├── page.tsx       # 主页面
-│   │   ├── page-content.tsx # 带 i18n 和 JSON-LD 的内容
-│   │   ├── robots.ts      # robots.txt 生成器
-│   │   ├── sitemap.ts     # sitemap.xml 生成器
-│   │   └── sections/      # 主要部分（Header、Main、Footer）
-│   ├── components/
-│   │   ├── sections/      # 部分组件
-│   │   └── ui/            # Shadcn UI 组件
-│   ├── hooks/
-│   │   └── useClientLocale.ts # 语言管理 hook
-│   ├── lib/
-│   │   ├── metadata.ts    # SEO 和 JSON-LD 实用程序
-│   │   └── utils.ts       # 通用实用程序
-│   ├── store/             # 全局状态（Zustand）
-│   ├── styles/            # 全局样式
-│   └── locales.ts         # 语言配置
-├── CHANGELOG.md           # 更改历史
-├── package.json
-└── README.md              # 主文档
+本地化路由在 `src/app/[locale]/`，i18n 在 `src/i18n/`，页面区块在 `src/components/sections/`，测试在 `e2e/`。
 
-```
-
-有关结构的更多详细信息，请参阅 [project-structure.md](./project-structure.md)。
+完整结构见 [project-structure.md](./project-structure.md)。
 
 ## 🔧 如何使用
 
@@ -149,6 +111,7 @@ pnpm build
 pnpm lint
 pnpm typecheck
 pnpm analyze
+pnpm test:e2e
 ```
 
 ### 部署

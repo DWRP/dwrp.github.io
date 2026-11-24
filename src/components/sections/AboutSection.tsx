@@ -1,20 +1,20 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { siteConfig } from "@/lib/siteConfig";
-import { getMotionProps } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { FadeInView } from "@/components/motion/FadeInView";
 
-export const AboutSection = () => {
-  const t = useTranslations("Index");
-  const prefersReducedMotion = usePrefersReducedMotion();
-  const motionProps = getMotionProps(prefersReducedMotion);
+export async function AboutSection() {
+  const t = await getTranslations("Index");
+  const highlights = [
+    t("about.highlights.item1"),
+    t("about.highlights.item2"),
+    t("about.highlights.item3"),
+    t("about.highlights.item4"),
+  ];
 
   return (
     <section id="about" className="w-full py-20 md:py-28 lg:py-36">
@@ -22,10 +22,7 @@ export const AboutSection = () => {
         <SectionHeader title={t("about.title")} subtitle={t("about.subtitle")} />
 
         <div className="grid grid-cols-1 items-center gap-8 md:gap-12 lg:grid-cols-2">
-          <motion.div
-            className="order-1 flex justify-center lg:order-2 lg:justify-end"
-            {...motionProps}
-          >
+          <FadeInView className="order-1 flex justify-center lg:order-2 lg:justify-end">
             <div className="relative">
               <div className="absolute inset-0 scale-110 rounded-full bg-primary/20 blur-2xl" />
               <Image
@@ -36,9 +33,9 @@ export const AboutSection = () => {
                 className="relative rounded-full border-4 border-primary/20 shadow-2xl"
               />
             </div>
-          </motion.div>
+          </FadeInView>
 
-          <motion.div className="order-2 space-y-6 lg:order-1" {...motionProps}>
+          <FadeInView className="order-2 space-y-6 lg:order-1">
             <Badge variant="secondary" className="px-4 py-2 text-sm">
               {t("about.intro")}
             </Badge>
@@ -55,12 +52,7 @@ export const AboutSection = () => {
                   {t("about.highlights.title")}
                 </h3>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {[
-                    t("about.highlights.item1"),
-                    t("about.highlights.item2"),
-                    t("about.highlights.item3"),
-                    t("about.highlights.item4"),
-                  ].map((item) => (
+                  {highlights.map((item) => (
                     <div key={item} className="flex items-start gap-2">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                       <span className="text-sm md:text-base">{item}</span>
@@ -69,9 +61,9 @@ export const AboutSection = () => {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </FadeInView>
         </div>
       </div>
     </section>
   );
-};
+}

@@ -1,20 +1,14 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { getTranslations } from "next-intl/server";
 import { Mail, Download, ArrowRight } from "lucide-react";
 import { Github, Linkedin } from "@/components/icons/brand";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { siteConfig } from "@/lib/siteConfig";
-import { getMotionProps } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { FadeInView } from "@/components/motion/FadeInView";
 
-export const ContactSection = () => {
-  const t = useTranslations("Index");
-  const prefersReducedMotion = usePrefersReducedMotion();
+export async function ContactSection() {
+  const t = await getTranslations("Index");
 
   const contactLinks = [
     {
@@ -58,15 +52,8 @@ export const ContactSection = () => {
             {contactLinks.map((link, index) => {
               const Icon = link.icon;
               return (
-                <motion.div
-                  key={link.label}
-                  {...getMotionProps(prefersReducedMotion)}
-                  transition={{
-                    duration: prefersReducedMotion ? 0.01 : 0.5,
-                    delay: prefersReducedMotion ? 0 : index * 0.08,
-                  }}
-                >
-                  <Link
+                <FadeInView key={link.label} delay={index * 0.08}>
+                  <a
                     href={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={
@@ -75,7 +62,7 @@ export const ContactSection = () => {
                         : undefined
                     }
                   >
-                    <Card className="group h-full cursor-pointer border-primary/15 shadow-lg card-hover">
+                    <Card className="card-hover group h-full cursor-pointer border-primary/15 shadow-lg">
                       <CardContent className="p-6 text-center">
                         <div className="mb-4 inline-flex rounded-full bg-primary p-4 text-primary-foreground transition-transform group-hover:scale-105">
                           <Icon className="h-6 w-6" />
@@ -86,13 +73,13 @@ export const ContactSection = () => {
                         </p>
                       </CardContent>
                     </Card>
-                  </Link>
-                </motion.div>
+                  </a>
+                </FadeInView>
               );
             })}
           </div>
 
-          <motion.div {...getMotionProps(prefersReducedMotion)}>
+          <FadeInView>
             <Card className="overflow-hidden border-primary/15 shadow-xl">
               <div className="h-1.5 gradient-primary" />
               <CardContent className="p-8 md:p-12">
@@ -107,14 +94,14 @@ export const ContactSection = () => {
                     {t("contact.readyDescription")}
                   </p>
                   <div className="flex flex-wrap justify-center gap-4 pt-4">
-                    <Link href={`mailto:${siteConfig.email}`}>
+                    <a href={`mailto:${siteConfig.email}`}>
                       <Button size="lg" className="font-semibold shadow-xl">
                         <Mail className="mr-2 h-5 w-5" />
                         {t("contact.cta.email")}
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
-                    </Link>
-                    <Link
+                    </a>
+                    <a
                       href={siteConfig.links.cv}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -127,14 +114,14 @@ export const ContactSection = () => {
                         <Download className="mr-2 h-5 w-5" />
                         {t("contact.cta.cv")}
                       </Button>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </FadeInView>
         </div>
       </div>
     </section>
   );
-};
+}

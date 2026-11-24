@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Locale } from "@/locales";
+import { Locale, locales } from "@/locales";
 import { siteConfig } from "@/lib/siteConfig";
 
 interface SeoMessages {
@@ -85,6 +85,20 @@ const localeCopy: Record<
   },
 };
 
+function localePath(locale: Locale) {
+  return `/${locale}/`;
+}
+
+function localeUrl(locale: Locale) {
+  return `${SITE_URL}${localePath(locale)}`;
+}
+
+function languageAlternates() {
+  return Object.fromEntries(
+    locales.map((locale) => [locale, localePath(locale)])
+  ) as Record<Locale, string>;
+}
+
 async function getSeoMessages(locale: Locale): Promise<SeoMessages> {
   const messages = await import(`../../messages/${locale}.json`);
   return messages.default.Index.seo;
@@ -94,6 +108,7 @@ export async function generateSeoMetadata(
   locale: Locale = "en"
 ): Promise<Metadata> {
   const seo = await getSeoMessages(locale);
+  const url = localeUrl(locale);
 
   return {
     title: {
@@ -107,13 +122,8 @@ export async function generateSeoMetadata(
     publisher: seo.author,
     metadataBase: new URL(SITE_URL),
     alternates: {
-      canonical: "/",
-      languages: {
-        en: "/",
-        "pt-BR": "/",
-        es: "/",
-        "zh-CN": "/",
-      },
+      canonical: localePath(locale),
+      languages: languageAlternates(),
     },
     robots: {
       index: true,
@@ -137,12 +147,12 @@ export async function generateSeoMetadata(
             : locale === "es"
               ? ["en_US", "pt_BR", "zh_CN"]
               : ["en_US", "pt_BR", "es_ES"],
-      url: SITE_URL,
+      url,
       title: seo.openGraph.title,
       description: seo.openGraph.description,
       siteName: seo.openGraph.siteName,
-      images: DEFAULT_IMAGES.map((url) => ({
-        url,
+      images: DEFAULT_IMAGES.map((imageUrl) => ({
+        url: imageUrl,
         width: 1200,
         height: 630,
         alt: seo.title,
@@ -170,7 +180,7 @@ export function generatePersonJsonLd(locale: Locale = "en") {
     familyName: "Pardim",
     jobTitle: copy.jobTitle,
     description: copy.description,
-    url: SITE_URL,
+    url: localeUrl(locale),
     image: DEFAULT_IMAGES[0],
     email: `mailto:${siteConfig.email}`,
     telephone: siteConfig.phone,
@@ -235,7 +245,7 @@ export function generateBreadcrumbJsonLd(locale: Locale = "en") {
         "@type": "ListItem",
         position: 1,
         name: copy.home,
-        item: SITE_URL,
+        item: localeUrl(locale),
       },
     ],
   };
@@ -249,7 +259,7 @@ export function generateWebsiteJsonLd(locale: Locale = "en") {
     "@type": "WebSite",
     name: siteConfig.name,
     description: copy.websiteDescription,
-    url: SITE_URL,
+    url: localeUrl(locale),
     author: {
       "@type": "Person",
       name: siteConfig.name,

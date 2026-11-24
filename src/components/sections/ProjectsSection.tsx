@@ -1,17 +1,12 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { getTranslations } from "next-intl/server";
 import { ExternalLink } from "lucide-react";
 import { Github } from "@/components/icons/brand";
 import { SectionHeader } from "@/components/sections/SectionHeader";
 import { siteConfig } from "@/lib/siteConfig";
-import { getMotionProps } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { FadeInView } from "@/components/motion/FadeInView";
 
 const projects = [
   { id: "app-ideas", hasLink: true, hasGithub: true },
@@ -19,9 +14,8 @@ const projects = [
   { id: "portfolio", hasLink: true, hasGithub: true },
 ] as const;
 
-export const ProjectsSection = () => {
-  const t = useTranslations("Index");
-  const prefersReducedMotion = usePrefersReducedMotion();
+export async function ProjectsSection() {
+  const t = await getTranslations("Index");
 
   return (
     <section id="projects" className="w-full py-20 md:py-28 lg:py-36">
@@ -36,17 +30,11 @@ export const ProjectsSection = () => {
             const tags = t.raw(
               `projects.projects-infos.${project.id}.tags`
             ) as string[] | undefined;
+            const hasType = t.has(`projects.projects-infos.${project.id}.type`);
 
             return (
-              <motion.div
-                key={project.id}
-                {...getMotionProps(prefersReducedMotion)}
-                transition={{
-                  duration: prefersReducedMotion ? 0.01 : 0.6,
-                  delay: prefersReducedMotion ? 0 : index * 0.08,
-                }}
-              >
-                <Card className="flex h-full flex-col border-primary/15 shadow-lg card-hover">
+              <FadeInView key={project.id} delay={index * 0.08}>
+                <Card className="card-hover flex h-full flex-col border-primary/15 shadow-lg">
                   <div className="h-1.5 gradient-primary" />
                   <CardContent className="flex flex-1 flex-col p-6">
                     <div className="flex-1">
@@ -54,7 +42,7 @@ export const ProjectsSection = () => {
                         <h3 className="font-display text-xl font-bold">
                           {t(`projects.projects-infos.${project.id}.name`)}
                         </h3>
-                        {t.has(`projects.projects-infos.${project.id}.type`) && (
+                        {hasType && (
                           <Badge variant="secondary" className="text-xs">
                             {t(`projects.projects-infos.${project.id}.type`)}
                           </Badge>
@@ -75,7 +63,7 @@ export const ProjectsSection = () => {
                     </div>
                     <div className="flex gap-2 border-t pt-4">
                       {project.hasLink && (
-                        <Link
+                        <a
                           href={t(`projects.projects-infos.${project.id}.link`)}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -85,10 +73,10 @@ export const ProjectsSection = () => {
                             <ExternalLink className="mr-2 h-4 w-4" />
                             {t("projects.cta")}
                           </Button>
-                        </Link>
+                        </a>
                       )}
                       {project.hasGithub && (
-                        <Link
+                        <a
                           href={t(
                             `projects.projects-infos.${project.id}.github`
                           )}
@@ -103,22 +91,21 @@ export const ProjectsSection = () => {
                           >
                             <Github className="h-4 w-4" aria-hidden />
                           </Button>
-                        </Link>
+                        </a>
                       )}
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </FadeInView>
             );
           })}
         </div>
 
-        <motion.div
-          className="mt-12 text-center"
-          {...getMotionProps(prefersReducedMotion)}
-        >
-          <p className="mb-4 text-muted-foreground">{t("projects.moreProjects")}</p>
-          <Link
+        <FadeInView className="mt-12 text-center">
+          <p className="mb-4 text-muted-foreground">
+            {t("projects.moreProjects")}
+          </p>
+          <a
             href={siteConfig.links.github}
             target="_blank"
             rel="noopener noreferrer"
@@ -127,9 +114,9 @@ export const ProjectsSection = () => {
               <Github className="mr-2 h-5 w-5" aria-hidden />
               {t("projects.github")}
             </Button>
-          </Link>
-        </motion.div>
+          </a>
+        </FadeInView>
       </div>
     </section>
   );
-};
+}

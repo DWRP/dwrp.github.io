@@ -28,23 +28,22 @@ Personal portfolio site: introduction, skills, experience, projects, and contact
 - **[Lucide Icons](https://lucide.dev/)** — icons
 
 ### Internationalization
-- **[next-intl](https://next-intl-docs.vercel.app/)** — client-side i18n for static export
+- **[next-intl](https://next-intl.dev/)** — App Router i18n with per-locale SSG (`/[locale]/`)
 - Languages: `en`, `pt-BR`, `es`, `zh-CN`
 
 ### DevOps
 - **[GitHub Pages](https://pages.github.com/)** — static hosting
 - **[GitHub Actions](https://github.com/features/actions)** — CI/CD with pnpm
+- **[Playwright](https://playwright.dev/)** — E2E (i18n, responsive, performance)
 
 ## Features
 
 - Hero, About, Experience, Skills, Education, Projects, Contact
 - Fixed navigation with active section indicator
-- Language switcher with localStorage persistence
+- Locale URLs (`/en/`, `/pt-BR/`, …) with static HTML per language
 - Dark / light theme with persistence
-- SEO: metadata, Open Graph, Twitter Cards, JSON-LD in static HTML
+- SEO: per-locale metadata, Open Graph, Twitter Cards, JSON-LD, hreflang
 - Dynamic sitemap and robots.txt
-
-> **Note on i18n + SSG:** language switching is client-side (required for `output: "export"`). Default metadata and JSON-LD ship in English; the HTML `lang` attribute updates in the browser.
 
 ## Getting Started
 
@@ -64,14 +63,14 @@ pnpm install
 
 ```bash
 pnpm dev
-# http://localhost:3000
+# http://localhost:3000/en/
 ```
 
 ### Production Build
 
 ```bash
 pnpm build
-# output in /out
+# output in /out (root redirects to /en/)
 ```
 
 ### Other scripts
@@ -79,7 +78,9 @@ pnpm build
 ```bash
 pnpm lint
 pnpm typecheck
-pnpm analyze   # bundle analyzer (ANALYZE=true)
+pnpm analyze     # bundle analyzer (ANALYZE=true)
+pnpm test:e2e    # Playwright against out/ (run build first)
+pnpm test:e2e:ui
 ```
 
 ## License
