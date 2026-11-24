@@ -1,5 +1,7 @@
 # Changelog - Modernização do Site Pessoal
 
+Documentação relacionada: [Estrutura](./project-structure.md) · [SDD](./sdd.md) · [Specs](./specs/) · [AGENTS](../AGENTS.md)
+
 ## 2025-01-10 - Correção de Internacionalização
 
 ### 🔧 Problemas Críticos Corrigidos

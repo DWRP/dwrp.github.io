@@ -2,53 +2,66 @@
 
 ## Overview
 
-This document describes the complete structure of the dwrp.github.io project - a modern portfolio website built with Next.js 15, React 19, and TypeScript.
+This document describes the structure of **dwrp.github.io** — a personal portfolio website built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
 
 ## Project Architecture
 
-The project follows Next.js 15 App Router architecture with a focus on:
-- Static Site Generation (SSG)
-- Client-side internationalization
-- SEO optimization
-- Component modularity
-- Clean code principles
+The project follows the Next.js App Router with:
+
+- Static Site Generation (`output: "export"`)
+- Client-side internationalization (compatible with static export)
+- SEO via metadata, Open Graph, Twitter Cards, and JSON-LD
+- Modular section components
+- Zustand for theme, locale sync, and active menu state
+
+Related docs:
+
+- [Spec-Driven Development](./sdd.md)
+- [Product & module specs](./specs/)
+- [Changelog](./CHANGELOG.md)
 
 ## Root Directory Structure
 
 ```
 dwrp.github.io/
-├── .github/                # GitHub configuration
-│   └── workflows/          # GitHub Actions CI/CD
-│       └── main.yml        # Build and deploy workflow
-├── docs/                   # Project documentation
-│   ├── README-pt-BR.md    # Documentation in Portuguese
-│   ├── README-es.md       # Documentation in Spanish
-│   └── project-structure.md # This file
-├── messages/              # i18n translation files
-│   ├── en.json           # English translations
-│   ├── pt-BR.json        # Brazilian Portuguese translations
-│   ├── es.json           # Spanish translations
-│   └── zh-CN.json        # Simplified Chinese translations
-├── out/                  # Production build output (generated)
-├── public/               # Static assets
-│   ├── cover.jpeg       # Social media preview image (1200x630)
-│   ├── cover2.jpeg      # Alternative preview image
-│   ├── dwrp.svg         # Logo/brand mark
-│   └── favicon.ico      # Browser favicon
-├── src/                 # Source code
-├── .gitignore          # Git ignore rules
-├── CHANGELOG.md        # Project changelog
-├── components.json     # Shadcn UI configuration
-├── next-env.d.ts       # Next.js TypeScript declarations
-├── next.config.mjs     # Next.js configuration
-├── package.json        # Project dependencies and scripts
-├── postcss.config.mjs  # PostCSS configuration
-├── README.md           # Main documentation (English)
-├── README-pt.md        # Main documentation (Portuguese)
-├── tailwind.config.ts  # Tailwind CSS configuration
-├── tsconfig.json       # TypeScript configuration
-└── yarn.lock           # Yarn lock file
+├── .github/
+│   └── workflows/
+│       └── main.yml          # Build + deploy to GitHub Pages (pnpm)
+├── .cursor/
+│   └── rules/
+│       └── sdd.mdc           # Cursor rule for Spec → Implement → Verify
+├── docs/
+│   ├── README-pt-BR.md
+│   ├── README-es.md
+│   ├── README-zh-CN.md
+│   ├── CHANGELOG.md
+│   ├── project-structure.md  # This file
+│   ├── sdd.md                # SDD workflow
+│   └── specs/                # Product and module specs
+├── messages/                 # i18n catalogs
+│   ├── en.json
+│   ├── pt-BR.json
+│   ├── es.json
+│   └── zh-CN.json
+├── public/                   # Static assets copied to /out
+│   ├── cover.jpeg
+│   ├── cover2.jpeg
+│   ├── dwrp.svg
+│   └── favicon.ico
+├── src/                      # Application source
+├── AGENTS.md                 # Entry point for coding agents
+├── components.json           # shadcn/ui config
+├── eslint.config.mjs
+├── next.config.mjs           # output: "export", trailingSlash, images
+├── package.json              # packageManager: pnpm
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml       # allowBuilds for native deps (not a multi-app monorepo)
+├── postcss.config.mjs        # Tailwind 4 PostCSS plugin
+├── README.md
+└── tsconfig.json
 ```
+
+Generated (not committed as source of truth): `.next/`, `out/`, `node_modules/`.
 
 ## Source Directory (`src/`)
 
@@ -56,272 +69,123 @@ dwrp.github.io/
 
 ```
 src/app/
-├── layout.tsx           # Root layout with metadata generation
-├── page.tsx            # Root page (imports PageContent)
-├── page-content.tsx    # Main page content with i18n and JSON-LD
-├── robots.ts           # robots.txt generator
-├── sitemap.ts          # sitemap.xml generator
-└── sections/           # Main layout sections
-    ├── Header.tsx      # Header with navigation and theme toggle
-    ├── Main.tsx        # Main content wrapper
-    └── Footer.tsx      # Footer with links and credits
+├── layout.tsx            # Root layout + generateMetadata (default locale en)
+├── page.tsx              # Entry → PageContent
+├── page-content.tsx      # Client shell: i18n provider, theme class, JSON-LD, sections
+├── robots.ts             # /robots.txt
+├── sitemap.ts            # /sitemap.xml
+└── sections/
+    ├── Header.tsx        # Nav, locale select, theme toggle
+    ├── Main.tsx          # Main content wrapper
+    └── Footer.tsx        # Footer links and credits
 ```
 
-**Key Files:**
+**Key files:**
 
-- **`layout.tsx`**: Root layout that wraps the entire application
-  - Implements `generateMetadata()` for dynamic SEO
-  - Includes `<html>` and `<body>` tags
-  - Loads global styles
-  - Sets up theme provider
-
-- **`page.tsx`**: Entry point that imports and renders `PageContent`
-
-- **`page-content.tsx`**: Main content component
-  - Client component with internationalization
-  - Dynamic JSON-LD injection based on locale
-  - Updates HTML `lang` attribute
-  - Orchestrates all page sections
-
-- **`robots.ts`**: Generates `/robots.txt`
-  - Allows all user agents
-  - Blocks `/private/` directory
-  - References sitemap
-
-- **`sitemap.ts`**: Generates `/sitemap.xml`
-  - Includes all locales
-  - Sets change frequency and priority
-  - Adds alternate language links
+- **`layout.tsx`**: HTML shell, global CSS, SEO metadata via `generateSeoMetadata("en")` at build time.
+- **`page-content.tsx`**: Loads `messages/{locale}.json`, wraps `NextIntlClientProvider`, syncs `document.documentElement.lang` and `.dark` class, injects JSON-LD, composes Header / Main sections / Footer.
+- **`robots.ts`**: Allows `/`, disallows `/private/`, points to sitemap.
+- **`sitemap.ts`**: Single URL for the site; language alternates currently list `en` and `pt-BR` (client i18n still supports four locales).
 
 ### Components (`src/components/`)
 
 ```
 src/components/
-├── sections/              # Page section components
-│   ├── HeroSection.tsx   # Hero/intro with stats
-│   ├── AboutSection.tsx  # About me section
-│   ├── ExperienceSection.tsx  # Professional experience timeline
-│   ├── SkillsSection.tsx     # Skills categorized by area
-│   ├── EducationSection.tsx  # Education and certifications
-│   ├── ProjectsSection.tsx   # Featured projects showcase
-│   └── ContactSection.tsx    # Contact information
-├── ui/                   # Shadcn UI components
+├── sections/
+│   ├── HeroSection.tsx
+│   ├── AboutSection.tsx
+│   ├── ExperienceSection.tsx
+│   ├── SkillsSection.tsx
+│   ├── EducationSection.tsx
+│   ├── ProjectsSection.tsx
+│   └── ContactSection.tsx
+├── ui/                   # shadcn-style primitives
 │   ├── badge.tsx
 │   ├── button.tsx
 │   ├── card.tsx
 │   ├── input.tsx
 │   ├── select.tsx
 │   └── textarea.tsx
-└── Loading.tsx          # Loading state component
+├── icons/
+│   └── brand.tsx
+└── Loading.tsx
 ```
 
-**Section Components Architecture:**
+Section components use next-intl translations, responsive Tailwind layouts, Framer Motion where appropriate, and semantic HTML / ARIA for accessibility.
 
-Each section component follows a consistent pattern:
-- Receives translations via props or context
-- Implements responsive design
-- Uses Framer Motion for animations
-- Follows accessibility best practices
-- Styled with Tailwind CSS
-
-### Hooks (`src/hooks/`)
+### Hooks, lib, store, styles
 
 ```
 src/hooks/
-└── useClientLocale.ts   # Client-side locale management
-```
+└── useClientLocale.ts    # preferred-locale in localStorage + browser detect
 
-**`useClientLocale` Hook:**
-- Manages current locale state
-- Persists selection in localStorage
-- Provides locale switching function
-- Handles initial load from storage
-- Used throughout the application
-
-### Library Utilities (`src/lib/`)
-
-```
 src/lib/
-├── metadata.ts          # SEO and JSON-LD utilities
-└── utils.ts            # General utility functions (cn helper)
-```
+├── metadata.ts           # SEO Metadata + Person / Breadcrumb / WebSite JSON-LD
+└── utils.ts              # cn() via clsx + tailwind-merge
 
-**`metadata.ts` Functions:**
-
-1. **`generateSeoMetadata(locale)`**
-   - Generates Next.js Metadata object
-   - Includes title templates
-   - Sets up Open Graph tags
-   - Configures Twitter Cards
-   - Adds canonical URLs and alternates
-   - Returns complete metadata for SEO
-
-2. **`generatePersonJsonLd(locale)`**
-   - Creates Schema.org Person structured data
-   - Includes professional information
-   - Lists skills and technologies
-   - References education and work history
-
-3. **`generateBreadcrumbJsonLd(locale)`**
-   - Creates breadcrumb navigation schema
-   - Improves site navigation understanding
-
-4. **`generateWebsiteJsonLd(locale)`**
-   - Creates WebSite schema
-   - Includes copyright and language info
-
-**`utils.ts`:**
-- `cn()` function for conditional className merging
-- Uses clsx and tailwind-merge
-
-### Store (`src/store/`)
-
-```
 src/store/
-├── app.ts              # Application state (Zustand)
-└── store.service.ts    # Store utilities
-```
+└── app.ts                # Zustand: theme, lang, activeMenu (persist key "app")
 
-State management for:
-- Theme preferences (dark/light)
-- UI state (mobile menu open/closed)
-- Potentially other global state
-
-### Styles (`src/styles/`)
-
-```
 src/styles/
-└── globals.css         # Global styles and CSS variables
+└── globals.css           # Tailwind 4 @import, @theme inline, :root / .dark tokens
+
+src/locales.ts            # locales, Locale type, defaultLocale ("en")
 ```
 
-**Global Styles Include:**
-- Tailwind directives (@tailwind base/components/utilities)
-- CSS custom properties for theming
-- Dark mode variables
-- Custom animations (fadeIn, slideUp, slideDown, float)
-- Gradient utilities
-- Glass morphism effects
-- Utility classes
+**`useClientLocale`:** reads/writes `preferred-locale`, detects `pt` / `es` / `zh` / default `en`, exposes `[locale, setLocale]`.
 
-### Configuration Files (`src/`)
+**`useAppStore`:** `theme` (`light` | `dark`, default `dark`), `lang`, `activeMenu`, persisted under localStorage key `app`.
 
-```
-src/
-└── locales.ts          # Locale configuration
-```
+**Styling:** Tailwind CSS 4 via `@import "tailwindcss"` and `@theme inline` in CSS — there is no `tailwind.config.ts`.
 
-**`locales.ts`:**
-```typescript
-export const locales = ["en", "pt-BR", "es", "zh-CN"] as const;
-export type Locale = (typeof locales)[number];
-export const defaultLocale = locales[0];
-```
+## Internationalization
 
-## Internationalization (i18n) Structure
+Locales: `en` (default), `pt-BR`, `es`, `zh-CN` — defined in `src/locales.ts`.
 
-### Translation Files (`messages/`)
-
-Each JSON file follows the same structure:
+Catalog shape (each `messages/*.json`):
 
 ```json
 {
   "Index": {
-    "nav": { ... },
-    "hero": { ... },
-    "about": { ... },
-    "experience": { ... },
-    "skills": { ... },
-    "education": { ... },
-    "projects": { ... },
-    "contact": { ... },
-    "footer": { ... },
-    "seo": { ... }
+    "nav": {},
+    "hero": {},
+    "about": {},
+    "experience": {},
+    "skills": {},
+    "education": {},
+    "projects": {},
+    "contact": {},
+    "footer": {},
+    "seo": {}
   }
 }
 ```
 
-**Translation Categories:**
-
-1. **nav**: Navigation menu items and locale names
-2. **hero**: Hero section content and CTAs
-3. **about**: About section text and highlights
-4. **experience**: Job history and achievements
-5. **skills**: Technology categories and descriptions
-6. **education**: Academic background and certifications
-7. **projects**: Project information and filters
-8. **contact**: Contact information and CTAs
-9. **footer**: Footer content and credits
-10. **seo**: SEO metadata (title, description, keywords, OG, Twitter)
+i18n is **client-side only** (no middleware, no `/[locale]` routes) so static export to GitHub Pages remains valid.
 
 ## Build Output (`out/`)
 
-Generated during build process (`yarn build`):
+Produced by `pnpm build` (`next build` with `output: "export"`):
 
 ```
 out/
-├── _next/              # Next.js assets
-│   ├── static/        # Static chunks and CSS
-│   └── [hash]/        # Build manifest
-├── 404.html           # 404 error page
-├── index.html         # Main page
-├── robots.txt         # Generated robots.txt
-├── sitemap.xml        # Generated sitemap
-└── [public assets]    # Copied from public/
+├── _next/
+├── 404.html
+├── index.html
+├── robots.txt
+├── sitemap.xml
+└── …assets from public/
 ```
 
-## Key Technologies and Patterns
+## Key Patterns
 
-### 1. Static Site Generation (SSG)
-- Entire site is pre-rendered at build time
-- No server-side rendering required
-- Perfect for GitHub Pages deployment
-- Fast page loads and excellent SEO
-
-### 2. Client-Side i18n
-- No middleware (incompatible with static export)
-- Locale stored in localStorage
-- Dynamic content switching without page reload
-- SEO handled via metadata and JSON-LD
-
-### 3. SEO Optimization
-- Dynamic metadata generation per locale
-- Open Graph for social media
-- Twitter Cards configuration
-- JSON-LD structured data (Person, WebSite, Breadcrumb)
-- Sitemap with hreflang alternates
-- Proper robots.txt configuration
-
-### 4. Component Architecture
-- Modular section components
-- Reusable UI components (Shadcn)
-- Separation of concerns
-- Props drilling avoided via hooks
-- Consistent styling patterns
-
-### 5. Styling Approach
-- Tailwind utility-first CSS
-- Custom CSS variables for theming
-- Dark mode support via CSS classes
-- Responsive design (mobile-first)
-- Custom animations and transitions
-
-### 6. State Management
-- Zustand for global state
-- React hooks for local state
-- localStorage for persistence
-- Minimal state overhead
-
-## File Naming Conventions
-
-- **React Components**: PascalCase (e.g., `HeroSection.tsx`)
-- **Utilities**: camelCase (e.g., `metadata.ts`)
-- **Configuration**: kebab-case (e.g., `next.config.mjs`)
-- **Documentation**: kebab-case (e.g., `project-structure.md`)
-- **Translation files**: locale code (e.g., `pt-BR.json`)
+1. **SSG / static export** — entire site pre-rendered; deploy artifact is `./out`.
+2. **Client i18n** — locale in localStorage; no SSR locale routing.
+3. **SEO** — build-time metadata (English default), client JSON-LD, robots + sitemap.
+4. **Theming** — CSS variables + `.dark` on `<html>`; toggle updates Zustand + classList.
+5. **State** — Zustand for cross-cutting UI; React state/hooks for local concerns.
 
 ## Import Aliases
-
-Configured in `tsconfig.json`:
 
 ```json
 {
@@ -331,68 +195,40 @@ Configured in `tsconfig.json`:
 }
 ```
 
-**Usage:**
-```typescript
-import { useClientLocale } from "@/hooks/useClientLocale";
-import { generateSeoMetadata } from "@/lib/metadata";
-```
+## Scripts
 
-## Scripts (package.json)
-
-- `yarn dev` - Start development server
-- `yarn build` - Build for production (generates `/out`)
-- `yarn start` - Start production server (not used with static export)
-- `yarn lint` - Run ESLint
+- `pnpm dev` — development server
+- `pnpm build` — production static export → `/out`
+- `pnpm start` — Next start (limited usefulness with static export)
+- `pnpm lint` — ESLint
 
 ## Development Workflow
 
-1. **Local Development**: `yarn dev` → http://localhost:3000
-2. **Make Changes**: Edit files in `src/`
-3. **Test**: Verify changes in browser
-4. **Build**: `yarn build` to test static export
-5. **Commit**: Git commit with descriptive message
-6. **Push**: Push to `main` branch
-7. **Deploy**: GitHub Actions automatically builds and deploys
+1. `pnpm install`
+2. `pnpm dev` → http://localhost:3000
+3. Edit `src/` and/or `messages/`
+4. For behavior changes, update `docs/specs/` in the same change (see [sdd.md](./sdd.md))
+5. `pnpm lint` / `pnpm build`
+6. Push to `main` → GitHub Actions deploys Pages
 
-## Deployment Process
+## Deployment
 
-GitHub Actions workflow (`.github/workflows/main.yml`):
+[`.github/workflows/main.yml`](../.github/workflows/main.yml):
 
-1. Trigger on push to `main`
-2. Checkout code
-3. Setup Node.js
-4. Install dependencies
-5. Run build (`yarn build`)
-6. Deploy `/out` to GitHub Pages
+1. Push to `main` (or `workflow_dispatch`)
+2. Checkout, setup pnpm + Node 22
+3. `pnpm install --frozen-lockfile`
+4. `pnpm next build`
+5. Upload `./out` and deploy with `actions/deploy-pages`
 
-## Best Practices Followed
+## Conventions
 
-- ✅ TypeScript for type safety
-- ✅ Component modularity
-- ✅ Responsive design
-- ✅ Accessibility (ARIA labels, semantic HTML)
-- ✅ SEO optimization
-- ✅ Performance optimization
-- ✅ Code splitting (automatic with Next.js)
-- ✅ Image optimization
-- ✅ Clean code principles
-- ✅ Git best practices
-- ✅ Documentation
-
-## Future Considerations
-
-Potential improvements:
-- Add more languages
-- Blog section with MDX
-- Project detail pages
-- Contact form with backend
-- Analytics integration
-- A/B testing capabilities
-- Progressive Web App (PWA) features
+- React components: PascalCase (`HeroSection.tsx`)
+- Utilities: camelCase (`metadata.ts`)
+- Config: kebab-case or tool defaults (`next.config.mjs`)
+- Specs: kebab-case under `docs/specs/`
 
 ---
 
-**Last Updated**: January 2025  
-**Version**: 2.0  
-**Maintainer**: Douglas Pardim
-
+**Last updated:** November 2026  
+**Maintainer:** Douglas Pardim

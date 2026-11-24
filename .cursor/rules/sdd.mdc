@@ -1,0 +1,26 @@
+---
+description: Spec-Driven Development — ler e manter docs/specs ao mudar comportamento
+globs:
+  - src/**/*
+  - messages/**/*
+  - docs/specs/**/*
+  - next.config.mjs
+  - .github/workflows/**/*
+alwaysApply: false
+---
+
+# SDD neste repo
+
+Siga **Spec → Implement → Verify**.
+
+1. Antes de implementar: ler `docs/specs/product.md` e o módulo em `docs/specs/modules/` relacionado à tarefa.
+2. Implementar alinhado à spec; se o comportamento mudar, atualizar a spec no mesmo trabalho.
+3. Verificar com `pnpm lint` e `pnpm build` quando o build/export puder ser afetado.
+
+## Stack (não contradizer)
+
+- pnpm, Next.js 16, React 19, Tailwind 4 (CSS)
+- Static export (`output: "export"`) → `./out`
+- i18n client-side apenas; sem middleware de locale
+
+Entrada completa: `AGENTS.md` e `docs/sdd.md`.

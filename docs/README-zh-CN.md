@@ -4,10 +4,13 @@
 [![License](https://img.shields.io/badge/许可证-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Author](https://img.shields.io/badge/作者-Douglas%20Pardim-orange)](https://github.com/dwrp)
 [![CI/CD](https://github.com/dwrp/dwrp.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/dwrp/dwrp.github.io/actions)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2-blue)](https://react.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.3-blue)](https://react.dev/)
+[![pnpm](https://img.shields.io/badge/pnpm-12-yellow)](https://pnpm.io/)
 
 > 🌍 **语言**: [English](../README.md) | [Português](./README-pt-BR.md) | [Español](./README-es.md) | **中文**
+>
+> 📚 **文档**: [结构](./project-structure.md) | [SDD](./sdd.md) | [Specs](./specs/) | [Changelog](./CHANGELOG.md) | [AGENTS](../AGENTS.md)
 
 欢迎来到我的个人网站！此仓库包含我的专业作品集的源代码，我在这里展示我的职业历程、掌握的技术、开发的项目以及联系信息。
 
@@ -21,25 +24,27 @@
 - **完全响应式**: 在桌面、平板和移动设备上的完美体验
 - **多语言**: 完整支持葡萄牙语、英语、西班牙语和简体中文
 - **SEO 优化**: 完整的 meta 标签、Open Graph、Twitter Cards 和 JSON-LD structured data
-- **性能**: 使用 Next.js 15 和 React 19 优化的静态构建
+- **性能**: 使用 Next.js 16 和 React 19 优化的静态构建
 - **主题**: 明暗模式切换
 
 ## 🚀 使用的技术
 
 ### 核心
-- **[Next.js 15.5](https://nextjs.org/)** - 具有 SSG/SSR 功能的 React 框架
-- **[React 19.2](https://react.dev/)** - 用于构建用户界面的 JavaScript 库
+- **[Next.js 16.4](https://nextjs.org/)** - 支持静态导出（SSG）的 React 框架
+- **[React 19.3](https://react.dev/)** - 用于构建用户界面的 JavaScript 库
 - **[TypeScript](https://www.typescriptlang.org/)** - JavaScript 的类型化超集
+- **[pnpm](https://pnpm.io/)** - 项目包管理器
 
 ### UI/UX
-- **[Tailwind CSS](https://tailwindcss.com/)** - 实用优先的 CSS 框架
+- **[Tailwind CSS 4](https://tailwindcss.com/)** - 实用优先的 CSS 框架（PostCSS / CSS）
 - **[Shadcn UI](https://ui.shadcn.com/)** - 可重用的 UI 组件库
 - **[Framer Motion](https://www.framer.com/motion/)** - React 动画库
 - **[Lucide Icons](https://lucide.dev/)** - 现代图标库
+- **[Zustand](https://zustand.docs.pmnd.rs/)** - 全局状态（主题、语言、活动菜单）
 
 ### 国际化
-- **[next-intl](https://next-intl-docs.vercel.app/)** - Next.js 国际化
-- 原生支持 4 种语言（pt-BR、en、es、zh-CN）
+- **[next-intl](https://next-intl-docs.vercel.app/)** - Next.js 国际化（客户端）
+- 原生支持 4 种语言（en、pt-BR、es、zh-CN）
 
 ### DevOps
 - **[GitHub Pages](https://pages.github.com/)** - 静态站点托管
@@ -72,90 +77,52 @@
 
 ```
 dwrp.github.io/
-├── docs/                    # 项目文档
-│   ├── README-pt-BR.md     # 葡萄牙语文档
-│   ├── README-es.md        # 西班牙语文档
-│   ├── README-zh-CN.md     # 中文文档
-│   └── project-structure.md # 详细项目结构
-├── messages/               # i18n 翻译文件
-│   ├── en.json            # 英语
-│   ├── pt-BR.json         # 巴西葡萄牙语
-│   ├── es.json            # 西班牙语
-│   └── zh-CN.json         # 简体中文
-├── public/                # 静态资源
-│   ├── cover.jpeg         # 预览图片（Open Graph）
-│   ├── cover2.jpeg        # 备用图片
-│   ├── dwrp.svg           # Logo
-│   └── favicon.ico        # Favicon
-├── src/
-│   ├── app/               # App Router（Next.js 15）
-│   │   ├── layout.tsx     # 带 metadata 的根布局
-│   │   ├── page.tsx       # 主页面
-│   │   ├── page-content.tsx # 带 i18n 和 JSON-LD 的内容
-│   │   ├── robots.ts      # robots.txt 生成器
-│   │   ├── sitemap.ts     # sitemap.xml 生成器
-│   │   └── sections/      # 主要部分（Header、Main、Footer）
-│   ├── components/
-│   │   ├── sections/      # 部分组件
-│   │   └── ui/            # Shadcn UI 组件
+├── docs/                   # 文档、SDD 与 specs
+├── messages/               # i18n（en、pt-BR、es、zh-CN）
+├── public/                 # 静态资源
+├── src/                    # Next.js 16 App Router
+│   ├── app/
+│   ├── components/         # sections/、ui/、icons/
 │   ├── hooks/
-│   │   └── useClientLocale.ts # 语言管理 hook
 │   ├── lib/
-│   │   ├── metadata.ts    # SEO 和 JSON-LD 实用程序
-│   │   └── utils.ts       # 通用实用程序
-│   ├── store/             # 全局状态（Zustand）
-│   ├── styles/            # 全局样式
-│   └── locales.ts         # 语言配置
-├── CHANGELOG.md           # 更改历史
-├── package.json
-└── README.md              # 主文档
-
+│   ├── store/
+│   ├── styles/
+│   └── locales.ts
+├── AGENTS.md
+├── package.json            # packageManager: pnpm
+├── pnpm-lock.yaml
+└── README.md
 ```
 
-有关结构的更多详细信息，请参阅 [project-structure.md](./project-structure.md)。
+详情见 [project-structure.md](./project-structure.md)。行为规格：[specs/](./specs/)。变更流程：[sdd.md](./sdd.md)。
 
 ## 🔧 如何使用
 
 ### 先决条件
 
-- Node.js 18+ 或更高版本
-- Yarn 或 NPM
+- Node.js 22+（CI 使用 Node 22；本地 18+ 也可能可用）
+- pnpm 12+（Corepack 或全局安装）
 
 ### 安装
 
 ```bash
-# 克隆仓库
 git clone https://github.com/dwrp/dwrp.github.io.git
-
-# 进入目录
 cd dwrp.github.io
-
-# 安装依赖
-yarn install
-# 或
-npm install
+pnpm install
 ```
 
 ### 开发
 
 ```bash
-# 启动开发服务器
-yarn dev
-# 或
-npm run dev
-
-# 访问 http://localhost:3000
+pnpm dev
+# http://localhost:3000
 ```
 
 ### 生产构建
 
 ```bash
-# 生成静态构建
-yarn build
-# 或
-npm run build
-
-# 构建将在 /out 目录中生成
+pnpm build
+# 输出在 /out
 ```
 
 ### 部署
@@ -166,8 +133,8 @@ npm run build
 
 项目支持 4 种语言：
 
-- 🇧🇷 **巴西葡萄牙语**（pt-BR）- 默认语言
-- 🇺🇸 **英语**（en）
+- 🇺🇸 **英语**（en）— 代码默认（`defaultLocale`）
+- 🇧🇷 **巴西葡萄牙语**（pt-BR）
 - 🇪🇸 **西班牙语**（es）
 - 🇨🇳 **简体中文**（zh-CN）
 
@@ -248,5 +215,5 @@ npm run build
 
 **用 ❤️ 构建，作者 Douglas Pardim**
 
-*最后更新：2025年1月*
+*最后更新：2026年11月*
 
