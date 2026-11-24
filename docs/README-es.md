@@ -4,10 +4,13 @@
 [![License](https://img.shields.io/badge/licencia-MIT-blue)](https://opensource.org/licenses/MIT)
 [![Author](https://img.shields.io/badge/autor-Douglas%20Pardim-orange)](https://github.com/dwrp)
 [![CI/CD](https://github.com/dwrp/dwrp.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/dwrp/dwrp.github.io/actions)
-[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2-blue)](https://react.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.4-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.3-blue)](https://react.dev/)
+[![pnpm](https://img.shields.io/badge/pnpm-12-yellow)](https://pnpm.io/)
 
-> 🌍 **Idiomas**: [English](../README.md) | [Português](./README-pt-BR.md) | **Español**
+> 🌍 **Idiomas**: [English](../README.md) | [Português](./README-pt-BR.md) | **Español** | [中文](./README-zh-CN.md)
+>
+> 📚 **Documentación**: [Estructura](./project-structure.md) | [SDD](./sdd.md) | [Specs](./specs/) | [Changelog](./CHANGELOG.md) | [AGENTS](../AGENTS.md)
 
 ¡Bienvenido a mi sitio web personal! Este repositorio contiene el código fuente de mi portafolio profesional, donde presento mi trayectoria, tecnologías que domino, proyectos desarrollados e información de contacto.
 
@@ -21,25 +24,27 @@ Sitio web personal construido con las más modernas tecnologías web, enfocado e
 - **Totalmente Responsivo**: Experiencia perfecta en desktop, tablet y móvil
 - **Multilingüe**: Soporte completo para Portugués, Inglés, Español y Chino Simplificado
 - **SEO Optimizado**: Meta tags completas, Open Graph, Twitter Cards y JSON-LD structured data
-- **Rendimiento**: Build estático optimizado con Next.js 15 y React 19
+- **Rendimiento**: Build estático optimizado con Next.js 16 y React 19
 - **Temas**: Alternancia entre modo claro y oscuro
 
 ## 🚀 Tecnologías Utilizadas
 
 ### Core
-- **[Next.js 15.5](https://nextjs.org/)** - Framework React con SSG/SSR
-- **[React 19.2](https://react.dev/)** - Biblioteca JavaScript para interfaces
+- **[Next.js 16.4](https://nextjs.org/)** - Framework React con export estático (SSG)
+- **[React 19.3](https://react.dev/)** - Biblioteca JavaScript para interfaces
 - **[TypeScript](https://www.typescriptlang.org/)** - Superset tipado de JavaScript
+- **[pnpm](https://pnpm.io/)** - Gestor de paquetes del proyecto
 
 ### UI/UX
-- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utilitario
+- **[Tailwind CSS 4](https://tailwindcss.com/)** - Framework CSS utilitario (PostCSS / CSS)
 - **[Shadcn UI](https://ui.shadcn.com/)** - Componentes UI reutilizables
 - **[Framer Motion](https://www.framer.com/motion/)** - Biblioteca de animaciones
 - **[Lucide Icons](https://lucide.dev/)** - Iconos modernos
+- **[Zustand](https://zustand.docs.pmnd.rs/)** - Estado global (tema, idioma, menú activo)
 
 ### Internacionalización
-- **[next-intl](https://next-intl-docs.vercel.app/)** - i18n para Next.js
-- Soporte nativo para 4 idiomas (pt-BR, en, es, zh-CN)
+- **[next-intl](https://next-intl-docs.vercel.app/)** - i18n para Next.js (client-side)
+- Soporte nativo para 4 idiomas (en, pt-BR, es, zh-CN)
 
 ### DevOps
 - **[GitHub Pages](https://pages.github.com/)** - Alojamiento estático
@@ -72,96 +77,52 @@ Sitio web personal construido con las más modernas tecnologías web, enfocado e
 
 ```
 dwrp.github.io/
-├── docs/                    # Documentación del proyecto
-│   ├── README-pt-BR.md     # Documentación en portugués
-│   ├── README-es.md        # Documentación en español
-│   └── project-structure.md # Estructura detallada del proyecto
-├── messages/               # Archivos de traducción (i18n)
-│   ├── en.json            # Inglés
-│   ├── pt-BR.json         # Portugués de Brasil
-│   ├── es.json            # Español
-│   └── zh-CN.json         # Chino Simplificado
-├── public/                # Archivos estáticos
-│   ├── cover.jpeg         # Imagen de preview (Open Graph)
-│   ├── cover2.jpeg        # Imagen alternativa
-│   ├── dwrp.svg           # Logo
-│   └── favicon.ico        # Favicon
-├── src/
-│   ├── app/               # App Router (Next.js 15)
-│   │   ├── layout.tsx     # Layout raíz con metadata
-│   │   ├── page.tsx       # Página principal
-│   │   ├── page-content.tsx # Contenido con i18n y JSON-LD
-│   │   ├── robots.ts      # Generador de robots.txt
-│   │   ├── sitemap.ts     # Generador de sitemap.xml
-│   │   └── sections/      # Secciones principales (Header, Main, Footer)
-│   ├── components/
-│   │   ├── sections/      # Componentes de sección
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── AboutSection.tsx
-│   │   │   ├── ExperienceSection.tsx
-│   │   │   ├── SkillsSection.tsx
-│   │   │   ├── EducationSection.tsx
-│   │   │   ├── ProjectsSection.tsx
-│   │   │   └── ContactSection.tsx
-│   │   └── ui/            # Componentes Shadcn UI
+├── docs/                   # Documentación, SDD y specs
+├── messages/               # Catálogos i18n (en, pt-BR, es, zh-CN)
+├── public/                 # Assets estáticos
+├── src/                    # App Router Next.js 16
+│   ├── app/
+│   ├── components/         # sections/, ui/, icons/
 │   ├── hooks/
-│   │   └── useClientLocale.ts # Hook de gestión de idioma
 │   ├── lib/
-│   │   ├── metadata.ts    # Utilidades de SEO y JSON-LD
-│   │   └── utils.ts       # Utilidades generales
-│   ├── store/             # Estado global (Zustand)
-│   ├── styles/            # Estilos globales
-│   └── locales.ts         # Configuración de idiomas
-├── CHANGELOG.md           # Historial de cambios
-├── package.json
-└── README.md              # Documentación principal
-
+│   ├── store/
+│   ├── styles/
+│   └── locales.ts
+├── AGENTS.md
+├── package.json            # packageManager: pnpm
+├── pnpm-lock.yaml
+└── README.md
 ```
 
-Para más detalles sobre la estructura, vea [project-structure.md](./project-structure.md).
+Detalles: [project-structure.md](./project-structure.md). Specs: [specs/](./specs/). Flujo de cambios: [sdd.md](./sdd.md).
 
 ## 🔧 Cómo Usar
 
 ### Prerrequisitos
 
-- Node.js 18+ o superior
-- Yarn o NPM
+- Node.js 22+ (CI usa Node 22; 18+ puede funcionar en local)
+- pnpm 12+ (Corepack o instalación global)
 
 ### Instalación
 
 ```bash
-# Clone el repositorio
 git clone https://github.com/dwrp/dwrp.github.io.git
-
-# Entre en la carpeta
 cd dwrp.github.io
-
-# Instale las dependencias
-yarn install
-# o
-npm install
+pnpm install
 ```
 
 ### Desarrollo
 
 ```bash
-# Inicie el servidor de desarrollo
-yarn dev
-# o
-npm run dev
-
-# Acceda a http://localhost:3000
+pnpm dev
+# http://localhost:3000
 ```
 
 ### Build de Producción
 
 ```bash
-# Genere el build estático
-yarn build
-# o
-npm run build
-
-# El build será generado en la carpeta /out
+pnpm build
+# salida en /out
 ```
 
 ### Deploy
@@ -172,8 +133,8 @@ El deploy es automático vía GitHub Actions cuando hay push en la rama `main`. 
 
 El proyecto soporta 4 idiomas:
 
-- 🇧🇷 **Portugués de Brasil** (pt-BR) - Idioma predeterminado
-- 🇺🇸 **Inglés** (en)
+- 🇺🇸 **Inglés** (en) — default en el código (`defaultLocale`)
+- 🇧🇷 **Portugués de Brasil** (pt-BR)
 - 🇪🇸 **Español** (es)
 - 🇨🇳 **Chino Simplificado** (zh-CN)
 
@@ -254,5 +215,5 @@ Este proyecto está licenciado bajo la [Licencia MIT](../LICENSE) - vea el archi
 
 **Desarrollado con ❤️ por Douglas Pardim**
 
-*Última actualización: Enero 2025*
+*Última actualización: Noviembre 2026*
 
