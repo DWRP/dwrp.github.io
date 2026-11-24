@@ -48,7 +48,7 @@ export const EducationSection = () => {
               <div className="h-2 gradient-primary" />
               <CardContent className="p-6 md:p-8">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <div className="p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-pink-500/10">
+                  <div className="p-4 rounded-xl bg-linear-to-br from-purple-500/10 to-pink-500/10">
                     <GraduationCap className="h-12 w-12 text-purple-500" />
                   </div>
                   <div className="flex-1">
@@ -97,7 +97,7 @@ export const EducationSection = () => {
                   <Card className="h-full card-hover border-purple-500/20 shadow-md">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-3 mb-3">
-                        <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500/10 to-pink-500/10">
+                        <div className="p-2 rounded-lg bg-linear-to-br from-purple-500/10 to-pink-500/10">
                           <Award className="h-5 w-5 text-purple-500" />
                         </div>
                         <Badge variant="outline" className="text-xs">

@@ -1,42 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { Locale } from "@/locales";
 
 const LOCALE_STORAGE_KEY = "preferred-locale";
+const LOCALE_EVENT = "preferred-locale-change";
+const SUPPORTED_LOCALES: Locale[] = ["en", "pt-BR", "es", "zh-CN"];
+
+function isLocale(value: string | null): value is Locale {
+  return value !== null && (SUPPORTED_LOCALES as string[]).includes(value);
+}
+
+function detectBrowserLocale(): Locale {
+  const browserLang = navigator.language;
+
+  if (browserLang.startsWith("pt")) return "pt-BR";
+  if (browserLang.startsWith("es")) return "es";
+  if (browserLang.startsWith("zh")) return "zh-CN";
+  return "en";
+}
+
+function getLocaleSnapshot(): Locale {
+  const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
+  if (isLocale(stored)) return stored;
+  return detectBrowserLocale();
+}
+
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener(LOCALE_EVENT, onStoreChange);
+  window.addEventListener("storage", onStoreChange);
+  return () => {
+    window.removeEventListener(LOCALE_EVENT, onStoreChange);
+    window.removeEventListener("storage", onStoreChange);
+  };
+}
 
 export function useClientLocale(): [Locale, (locale: Locale) => void] {
-  const [locale, setLocaleState] = useState<Locale>("en");
+  const locale = useSyncExternalStore(
+    subscribe,
+    getLocaleSnapshot,
+    () => "en" as Locale
+  );
 
-  useEffect(() => {
-    // Tentar pegar do localStorage primeiro
-    const stored = localStorage.getItem(LOCALE_STORAGE_KEY) as Locale;
-    
-    if (stored && (stored === "en" || stored === "pt-BR" || stored === "es" || stored === "zh-CN")) {
-      setLocaleState(stored);
-    } else {
-      // Detectar do navegador
-      const browserLang = navigator.language;
-      let detectedLocale: Locale = "en"; // default
-      
-      if (browserLang.startsWith("pt")) {
-        detectedLocale = "pt-BR";
-      } else if (browserLang.startsWith("es")) {
-        detectedLocale = "es";
-      } else if (browserLang.startsWith("zh")) {
-        detectedLocale = "zh-CN";
-      }
-      
-      setLocaleState(detectedLocale);
-      localStorage.setItem(LOCALE_STORAGE_KEY, detectedLocale);
-    }
-  }, []);
-
-  const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
+  const setLocale = useCallback((newLocale: Locale) => {
     localStorage.setItem(LOCALE_STORAGE_KEY, newLocale);
-  };
+    window.dispatchEvent(new Event(LOCALE_EVENT));
+  }, []);
 
   return [locale, setLocale];
 }
-

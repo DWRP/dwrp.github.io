@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Download, ArrowRight } from "lucide-react";
+import { Mail, Download, ArrowRight } from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/brand";
 
 export const ContactSection = () => {
   const t = useTranslations("Index");
@@ -87,7 +88,7 @@ export const ContactSection = () => {
                   <Link href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined}>
                     <Card className="h-full card-hover border-purple-500/20 shadow-lg group cursor-pointer">
                       <CardContent className="p-6 text-center">
-                        <div className={`inline-flex p-4 rounded-full bg-gradient-to-r ${link.color} mb-4 group-hover:scale-110 transition-transform`}>
+                        <div className={`inline-flex p-4 rounded-full bg-linear-to-r ${link.color} mb-4 group-hover:scale-110 transition-transform`}>
                           <Icon className="h-6 w-6 text-white" />
                         </div>
                         <h3 className="font-semibold mb-2">{link.label}</h3>
@@ -123,7 +124,7 @@ export const ContactSection = () => {
                     <Link href="mailto:douglas.skd@gmail.com">
                       <Button
                         size="lg"
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold shadow-xl"
+                        className="bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold shadow-xl"
                       >
                         <Mail className="mr-2 h-5 w-5" />
                         {t("contact.cta.email")}

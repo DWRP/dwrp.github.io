@@ -49,7 +49,7 @@ export const ExperienceSection = () => {
 
         <div className="max-w-4xl mx-auto relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-purple-600 to-pink-500 hidden md:block" />
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-purple-500 via-purple-600 to-pink-500 hidden md:block" />
 
           <div className="space-y-8">
             {jobs.map((jobId, index) => {
@@ -66,7 +66,7 @@ export const ExperienceSection = () => {
                   className="relative"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-6 top-8 w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-4 border-background shadow-lg hidden md:block z-10" />
+                  <div className="absolute left-6 top-8 w-5 h-5 rounded-full bg-linear-to-r from-purple-500 to-pink-500 border-4 border-background shadow-lg hidden md:block z-10" />
 
                   <Card className="ml-0 md:ml-20 card-hover border-purple-500/20 shadow-lg">
                     <CardContent className="p-6">

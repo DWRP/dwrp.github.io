@@ -141,7 +141,7 @@ export const SkillsSection = () => {
                 <Card className="h-full card-hover border-purple-500/20 shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={`p-3 rounded-lg bg-gradient-to-br from-purple-500/10 to-pink-500/10 ${category.color}`}>
+                      <div className={`p-3 rounded-lg bg-linear-to-br from-purple-500/10 to-pink-500/10 ${category.color}`}>
                         <Icon className="h-6 w-6" />
                       </div>
                       <div>
@@ -167,7 +167,7 @@ export const SkillsSection = () => {
                         >
                           <Badge
                             variant="secondary"
-                            className="hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all cursor-default"
+                            className="hover:bg-linear-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white transition-all cursor-default"
                           >
                             {skill}
                           </Badge>

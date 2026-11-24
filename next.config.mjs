@@ -1,7 +1,5 @@
 import analyzer from "@next/bundle-analyzer";
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   assetPrefix: "/",
@@ -21,8 +19,7 @@ const nextConfig = {
     ],
   },
   trailingSlash: true,
-  ...(isGithubActions && { output: "export" }),
-  output: "export"
+  output: "export",
 };
 
 const withBundleAnalyzer = analyzer({

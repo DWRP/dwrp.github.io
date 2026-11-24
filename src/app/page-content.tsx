@@ -7,7 +7,7 @@ import Footer from "./sections/Footer";
 import { useAppStore } from "@/store/app";
 import { Locale } from "@/locales";
 import { useClientLocale } from "@/hooks/useClientLocale";
-import { NextIntlClientProvider } from "next-intl";
+import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import {
   generatePersonJsonLd,
   generateBreadcrumbJsonLd,
@@ -16,7 +16,7 @@ import {
 
 export default function PageContent() {
   const [locale, setLocale] = useClientLocale();
-  const [messages, setMessages] = useState<any>(null);
+  const [messages, setMessages] = useState<AbstractIntlMessages | null>(null);
   const { theme, setTheme, setActiveMenu, setLocale: setStoreLocale } = useAppStore();
   const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
 
@@ -90,7 +90,7 @@ export default function PageContent() {
 
   if (!messages) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-pink-500">
+      <div className="flex items-center justify-center min-h-screen bg-linear-to-r from-purple-500 to-pink-500">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white mb-4"></div>
           <p className="text-white text-lg">Loading...</p>

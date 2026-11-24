@@ -1,7 +1,6 @@
 import { Locale } from "@/locales";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { storage } from "./store.service";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 type Theme = "light" | "dark";
 
@@ -14,8 +13,8 @@ interface AppState {
   setActiveMenu: (activeMenu: string) => void;
 }
 
-export const useAppStore = create(
-  persist<AppState>(
+export const useAppStore = create<AppState>()(
+  persist(
     (set) => ({
       theme: "dark",
       lang: "en",
@@ -32,7 +31,7 @@ export const useAppStore = create(
     }),
     {
       name: "app",
-      storage,
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

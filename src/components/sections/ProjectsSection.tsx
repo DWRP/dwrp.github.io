@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { Github } from "@/components/icons/brand";
 
 export const ProjectsSection = () => {
   const t = useTranslations("Index");
@@ -116,7 +117,7 @@ export const ProjectsSection = () => {
                         >
                           <Button
                             variant="default"
-                            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                            className="w-full bg-linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
                           >
                             <ExternalLink className="mr-2 h-4 w-4" />
                             {t("projects.cta")}

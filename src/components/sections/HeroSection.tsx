@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Download, Mail } from "lucide-react";
+import { Github, Linkedin } from "@/components/icons/brand";
 
 export const HeroSection = () => {
   const t = useTranslations("Index");
