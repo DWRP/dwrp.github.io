@@ -234,8 +234,8 @@ npm run build
 
 - **网站**：[https://dwrp.github.io](https://dwrp.github.io)
 - **GitHub**：[@dwrp](https://github.com/dwrp)
-- **LinkedIn**：[Douglas Pardim](https://linkedin.com/in/douglaspardim)
-- **邮箱**：douglas.pardim@exemplo.com
+- **LinkedIn**：[Douglas Pardim](https://linkedin.com/in/douglas-pardim)
+- **邮箱**：douglas.skd@gmail.com
 
 ## 🙏 致谢
 

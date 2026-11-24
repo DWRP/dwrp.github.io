@@ -151,7 +151,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 - **Website**: [https://dwrp.github.io](https://dwrp.github.io)
 - **GitHub**: [@dwrp](https://github.com/dwrp)
-- **LinkedIn**: [Douglas Pardim](https://linkedin.com/in/douglaspardim)
+- **LinkedIn**: [Douglas Pardim](https://linkedin.com/in/douglas-pardim)
 
 ---
 

@@ -240,8 +240,8 @@ Este projeto está licenciado sob a [Licença MIT](../LICENSE) - veja o arquivo 
 
 - **Website**: [https://dwrp.github.io](https://dwrp.github.io)
 - **GitHub**: [@dwrp](https://github.com/dwrp)
-- **LinkedIn**: [Douglas Pardim](https://linkedin.com/in/douglaspardim)
-- **Email**: douglas.pardim@exemplo.com
+- **LinkedIn**: [Douglas Pardim](https://linkedin.com/in/douglas-pardim)
+- **Email**: douglas.skd@gmail.com
 
 ## 🙏 Agradecimentos
 
